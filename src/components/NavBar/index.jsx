@@ -15,6 +15,9 @@ export default function NavBar() {
         <NavLink className={navlinkClassName} to="/shop">
           SHOP
         </NavLink>
+        <NavLink className={navlinkClassName} to="/signin">
+          SIGN IN
+        </NavLink>
       </div>
     </nav>
   );
