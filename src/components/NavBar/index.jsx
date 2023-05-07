@@ -2,6 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import "./navigation.scss";
 import CrownLogo from "../../assets/CrownLogo";
 
+const navlinkClassName = ({ isActive }) =>
+  isActive ? "nav-link active" : "nav-link";
+
 export default function NavBar() {
   return (
     <nav className="navigation">
@@ -9,7 +12,7 @@ export default function NavBar() {
         <CrownLogo className="logo" />
       </Link>
       <div className="nav-links-container">
-        <NavLink className="nav-link" to="/shop">
+        <NavLink className={navlinkClassName} to="/shop">
           SHOP
         </NavLink>
       </div>
