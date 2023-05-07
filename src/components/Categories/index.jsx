@@ -1,8 +1,8 @@
-import { categories } from "../../constants/categories";
+import PropTypes from "prop-types";
 import "./categories.scss";
 import Category from "../Category";
 
-export default function Categories() {
+export default function Categories({ categories }) {
   return (
     <div className="categories-container">
       {categories.map((category) => (
@@ -11,3 +11,7 @@ export default function Categories() {
     </div>
   );
 }
+
+Categories.propTypes = {
+  categories: PropTypes.array.isRequired,
+};
