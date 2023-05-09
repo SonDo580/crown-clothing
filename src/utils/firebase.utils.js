@@ -30,9 +30,8 @@ googleProvider.setCustomParameters({
 
 export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
 
-export const createAuthUser = (email, password) => {
+export const createAuthUser = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
-};
 
 export const db = getFirestore(firebaseApp);
 
