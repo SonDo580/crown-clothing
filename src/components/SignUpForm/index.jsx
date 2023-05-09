@@ -29,6 +29,10 @@ export default function SignUpForm() {
       return;
     }
 
+    if (displayName.trim() === "") {
+      return;
+    }
+
     const { user } = await createAuthUser(email, password);
 
     console.log(user);
