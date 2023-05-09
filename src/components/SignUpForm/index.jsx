@@ -64,6 +64,7 @@ export default function SignUpForm() {
           name="password"
           value={password}
           onChange={handleChange}
+          minLength={6}
         />
 
         <label>Confirm Password</label>
