@@ -35,7 +35,7 @@ export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
 export const createEmailPasswordUser = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
 
-export const createUserDocument = async (userAuth) => {
+export const createUserDocument = async (userAuth, additionalInfo = {}) => {
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
@@ -46,7 +46,12 @@ export const createUserDocument = async (userAuth) => {
     const createdAt = new Date();
 
     try {
-      await setDoc(userDocRef, { displayName, email, createdAt });
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalInfo,
+      });
     } catch (error) {
       console.error("Error creating user", error.message);
     }
