@@ -43,10 +43,11 @@ export default function SignUpForm() {
       return;
     }
 
-    const { user } = await createAuthUser(email, password);
-
-    console.log(user);
-    // TODO: create a new user document
+    try {
+      const { user } = await createAuthUser(email, password);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
