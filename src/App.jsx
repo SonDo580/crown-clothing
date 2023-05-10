@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -15,6 +16,8 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/sign-in" element={<SignIn />} />
       </Routes>
+
+      <ToastContainer />
     </BrowserRouter>
   );
 }
