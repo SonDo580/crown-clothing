@@ -8,6 +8,7 @@ import {
 
 import "./signupForm.scss";
 import FormInput from "../../common/FormInput";
+import Button from "../../common/Button";
 
 const defaultFormFields = {
   displayName: "",
@@ -105,7 +106,7 @@ export default function SignUpForm() {
           onChange={handleChange}
         />
 
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
