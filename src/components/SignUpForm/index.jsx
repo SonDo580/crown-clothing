@@ -27,6 +27,8 @@ export default function SignUpForm() {
     }));
   };
 
+  const resetForm = () => setFormFields(defaultFormFields);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -50,6 +52,8 @@ export default function SignUpForm() {
       const { user } = await createEmailPasswordUser(email, password);
 
       await createUserDocument(user, { displayName });
+
+      resetForm();
     } catch (err) {
       toast.error(err.message);
     }
