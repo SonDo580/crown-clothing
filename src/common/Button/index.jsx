@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./button.scss";
 
 const buttonTypeClasses = {
   google: "google-sign-in",
