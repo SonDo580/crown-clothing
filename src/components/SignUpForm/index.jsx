@@ -5,7 +5,7 @@ import {
   createEmailPasswordUser,
   createUserDocument,
 } from "../../utils/firebase.utils";
-import FormInput from "../FormInput";
+import FormInput from "../../common/FormInput";
 
 const defaultFormFields = {
   displayName: "",
