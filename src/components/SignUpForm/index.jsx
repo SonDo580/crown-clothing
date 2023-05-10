@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+
 import { createAuthUser } from "../../utils/firebase.utils";
 
 const defaultFormFields = {
@@ -25,11 +27,19 @@ export default function SignUpForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    let invalid = false;
+
     if (password !== confirmPassword) {
-      return;
+      toast.error("Passwords do not match!");
+      invalid = true;
     }
 
     if (displayName.trim() === "") {
+      toast.error("Display Name contains all whitespaces!");
+      invalid = true;
+    }
+
+    if (invalid) {
       return;
     }
 
