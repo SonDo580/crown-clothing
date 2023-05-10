@@ -50,6 +50,7 @@ export default function SignUpForm() {
 
     try {
       const { user } = await createEmailPasswordUser(email, password);
+      toast.success("Sign up successful");
 
       await createUserDocument(user, { displayName });
 
