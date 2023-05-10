@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import { createAuthUser } from "../../utils/firebase.utils";
+import { createEmailPasswordUser } from "../../utils/firebase.utils";
 
 const defaultFormFields = {
   displayName: "",
@@ -44,7 +44,7 @@ export default function SignUpForm() {
     }
 
     try {
-      const { user } = await createAuthUser(email, password);
+      const { user } = await createEmailPasswordUser(email, password);
     } catch (err) {
       toast.error(err.message);
     }
