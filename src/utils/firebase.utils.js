@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-export const auth = getAuth(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -28,12 +28,12 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
+const db = getFirestore(firebaseApp);
+
 export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
 
 export const createEmailPasswordUser = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
-
-export const db = getFirestore(firebaseApp);
 
 export const createUserDocument = async (userAuth) => {
   const userDocRef = doc(db, "users", userAuth.uid);
