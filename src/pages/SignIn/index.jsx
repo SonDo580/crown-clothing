@@ -1,16 +1,23 @@
-import SignUpForm from "../../components/SignUpForm";
+import { toast } from "react-toastify";
+
 import {
   createUserDocument,
   signInWithGoogle,
 } from "../../utils/firebase.utils";
 
+import SignUpForm from "../../components/SignUpForm";
+
 export default function SignIn() {
   const googleSignIn = async () => {
-    const { user } = await signInWithGoogle();
+    try {
+      const { user } = await signInWithGoogle();
 
-    const userDocRef = await createUserDocument(user);
+      const userDocRef = await createUserDocument(user);
 
-    console.log(userDocRef);
+      console.log(userDocRef);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
