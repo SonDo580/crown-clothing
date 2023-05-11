@@ -71,11 +71,13 @@ export default function SignInForm() {
           minLength={6}
         />
 
-        <Button type="submit">Sign In</Button>
+        <div className="buttons-container">
+          <Button type="submit">Sign In</Button>
 
-        <Button type="button" buttonType="google" onClick={googleSignIn}>
-          Sign in with Google
-        </Button>
+          <Button type="button" buttonType="google" onClick={googleSignIn}>
+            Google Sign In
+          </Button>
+        </div>
       </form>
     </div>
   );
