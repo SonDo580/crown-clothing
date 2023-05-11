@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import {
   createUserDocument,
   signInWithGoogle,
+  signInWithEmailPassword,
 } from "../../utils/firebase.utils";
 
 import "./signinForm.scss";
@@ -33,6 +34,7 @@ export default function SignInForm() {
     event.preventDefault();
 
     try {
+      await signInWithEmailPassword(email, password);
     } catch (err) {
       toast.error(err.message);
     }
