@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
-import SignIn from "./pages/SignIn";
+import Authentication from "./pages/Authentication";
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in" element={<Authentication />} />
       </Routes>
 
       <ToastContainer />

@@ -7,7 +7,7 @@ import {
 
 import SignUpForm from "../../components/SignUpForm";
 
-export default function SignIn() {
+export default function Authentication() {
   const googleSignIn = async () => {
     try {
       const { user } = await signInWithGoogle();
@@ -22,7 +22,7 @@ export default function SignIn() {
 
   return (
     <div>
-      <h1>SignIn Page</h1>
+      <h1>Authentication Page</h1>
       <button onClick={googleSignIn}>Sign in with Google</button>
 
       <SignUpForm />
