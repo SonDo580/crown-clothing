@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 import {
   createEmailPasswordUser,
   createUserDocument,
 } from "../../utils/firebase.utils";
+
+import { UserContext } from "../../contexts/UserContext";
 
 import "./signupForm.scss";
 import FormInput from "../../common/FormInput";
@@ -21,6 +23,8 @@ export default function SignUpForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -54,10 +58,10 @@ export default function SignUpForm() {
 
     try {
       const { user } = await createEmailPasswordUser(email, password);
+      await createUserDocument(user, { displayName });
       toast.success("Sign up successful");
 
-      await createUserDocument(user, { displayName });
-
+      setCurrentUser(user);
       resetForm();
     } catch (err) {
       toast.error(err.message);
