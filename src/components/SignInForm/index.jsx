@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 import {
@@ -6,6 +6,8 @@ import {
   signInWithGoogle,
   signInWithEmailPassword,
 } from "../../utils/firebase.utils";
+
+import { UserContext } from "../../contexts/UserContext";
 
 import "./signinForm.scss";
 import FormInput from "../../common/FormInput";
@@ -21,6 +23,8 @@ export default function SignInForm() {
 
   const { email, password } = formFields;
 
+  const { setCurrentUser } = useContext(UserContext);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -34,7 +38,8 @@ export default function SignInForm() {
     event.preventDefault();
 
     try {
-      await signInWithEmailPassword(email, password);
+      const { user } = await signInWithEmailPassword(email, password);
+      setCurrentUser(user);
     } catch (err) {
       toast.error(err.message);
     }
@@ -44,6 +49,7 @@ export default function SignInForm() {
     try {
       const { user } = await signInWithGoogle();
       await createUserDocument(user);
+      setCurrentUser(user);
     } catch (err) {
       toast.error(err.message);
     }
