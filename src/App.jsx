@@ -8,7 +8,7 @@ import Authentication from "./pages/Authentication";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <>
       <NavBar />
 
       <Routes>
@@ -18,6 +18,6 @@ export default function App() {
       </Routes>
 
       <ToastContainer />
-    </BrowserRouter>
+    </>
   );
 }
