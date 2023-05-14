@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import { signOutUser } from "../../utils/firebase.utils";
+
 import { UserContext } from "../../contexts/UserContext";
 
 import "./navigation.scss";
@@ -10,7 +12,12 @@ const navlinkClassName = ({ isActive }) =>
   isActive ? "nav-link active" : "nav-link";
 
 export default function NavBar() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
 
   return (
     <nav className="navigation">
@@ -23,7 +30,9 @@ export default function NavBar() {
         </NavLink>
 
         {currentUser ? (
-          <span className="nav-link">SIGN OUT</span>
+          <span className="nav-link" onClick={handleSignOut}>
+            SIGN OUT
+          </span>
         ) : (
           <NavLink className={navlinkClassName} to="/auth">
             SIGN IN
