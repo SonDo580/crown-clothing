@@ -1,5 +1,7 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
+
+import { onAuthStateChangedListener } from "../utils/firebase.utils";
 
 export const UserContext = createContext();
 
@@ -13,6 +15,14 @@ export const UserProvider = ({ children }) => {
     }),
     [currentUser]
   );
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) =>
+      setCurrentUser(user)
+    );
+
+    return unsubscribe;
+  }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
