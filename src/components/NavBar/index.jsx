@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { signOutUser } from "../../utils/firebase.utils";
 import { UserContext } from "../../contexts/UserContext";
@@ -14,7 +15,11 @@ export default function NavBar() {
   const currentUser = useContext(UserContext);
 
   const handleSignOut = async () => {
-    await signOutUser();
+    try {
+      await signOutUser();
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
