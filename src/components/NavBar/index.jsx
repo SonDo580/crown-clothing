@@ -6,7 +6,7 @@ import { signOutUser } from "../../utils/firebase.utils";
 import { UserContext } from "../../contexts/UserContext";
 
 import "./navigation.scss";
-import CrownLogo from "../../assets/CrownLogo";
+import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 
 const navlinkClassName = ({ isActive }) =>
   isActive ? "nav-link active" : "nav-link";
@@ -27,6 +27,7 @@ export default function NavBar() {
       <Link className="logo-container" to="/">
         <CrownLogo className="logo" />
       </Link>
+
       <div className="nav-links-container">
         <NavLink className={navlinkClassName} to="/shop">
           SHOP
