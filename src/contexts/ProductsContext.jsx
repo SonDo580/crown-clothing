@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
-import shopData from "../../mock/shopData.json";
+import shopData from "../mock/shopData.json";
 
 export const ProductsContext = createContext();
 
