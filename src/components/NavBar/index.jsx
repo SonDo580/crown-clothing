@@ -7,6 +7,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 import "./navigation.scss";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
+import CartIcon from "../CartIcon";
 
 const navlinkClassName = ({ isActive }) =>
   isActive ? "nav-link active" : "nav-link";
@@ -42,6 +43,8 @@ export default function NavBar() {
             SIGN IN
           </NavLink>
         )}
+
+        <CartIcon />
       </div>
     </nav>
   );
