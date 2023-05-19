@@ -8,6 +8,7 @@ import { UserContext } from "../../contexts/UserContext";
 import "./navigation.scss";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import CartIcon from "../CartIcon";
+import CartDropdown from "../CartDropdown";
 
 const navlinkClassName = ({ isActive }) =>
   isActive ? "nav-link active" : "nav-link";
@@ -46,6 +47,8 @@ export default function NavBar() {
 
         <CartIcon />
       </div>
+
+      <CartDropdown />
     </nav>
   );
 }
