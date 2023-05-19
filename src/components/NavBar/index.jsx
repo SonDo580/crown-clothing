@@ -17,7 +17,7 @@ const navlinkClassName = ({ isActive }) =>
 export default function NavBar() {
   const currentUser = useContext(UserContext);
 
-  const { cartVisible, toggleCartVisible } = useContext(CartContext);
+  const { cartVisible } = useContext(CartContext);
 
   const handleSignOut = async () => {
     try {
@@ -48,7 +48,7 @@ export default function NavBar() {
           </NavLink>
         )}
 
-        <CartIcon onClick={toggleCartVisible} />
+        <CartIcon />
       </div>
 
       {cartVisible && <CartDropdown />}
