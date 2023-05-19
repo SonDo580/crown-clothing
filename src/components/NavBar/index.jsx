@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import { signOutUser } from "../../utils/firebase.utils";
 import { UserContext } from "../../contexts/UserContext";
+import { CartContext } from "../../contexts/CartContext";
 
 import "./navigation.scss";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
@@ -15,6 +16,8 @@ const navlinkClassName = ({ isActive }) =>
 
 export default function NavBar() {
   const currentUser = useContext(UserContext);
+
+  const { cartVisible, toggleCartVisible } = useContext(CartContext);
 
   const handleSignOut = async () => {
     try {
@@ -45,10 +48,10 @@ export default function NavBar() {
           </NavLink>
         )}
 
-        <CartIcon />
+        <CartIcon onClick={toggleCartVisible} />
       </div>
 
-      <CartDropdown />
+      {cartVisible && <CartDropdown />}
     </nav>
   );
 }
