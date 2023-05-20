@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { CartContext } from "../../contexts/CartContext";
@@ -8,13 +9,18 @@ import Button from "../../common/Button";
 import CartItem from "../CartItem";
 
 export default function CartDropdown() {
-  const { cartItems } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const { cartItems, toggleCartVisible } = useContext(CartContext);
 
   const gotoCheckout = () => {
     if (!cartItems.length) {
       toast.warn("You haven't selected any product");
       return;
     }
+
+    navigate("/checkout");
+    toggleCartVisible();
   };
 
   return (
