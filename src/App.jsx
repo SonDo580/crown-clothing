@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Authentication from "./pages/Authentication";
+import Checkout from "./pages/Checkout";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/auth" element={<Authentication />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
 
