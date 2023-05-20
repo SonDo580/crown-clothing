@@ -1,7 +1,11 @@
 body {
   margin: 0;
-  padding: 20px 40px;
   font-family: "Roboto", sans-serif;
+  height: 100vh;
+
+  main {
+    padding: 0 40px 20px;
+  }
 }
 
 a {
