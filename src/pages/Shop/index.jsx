@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../contexts/UserContext";
 import { ProductsContext } from "../../contexts/ProductsContext";
@@ -10,13 +10,15 @@ import ProductCard from "../../components/ProductCard";
 export default function Shop() {
   const navigate = useNavigate();
 
+  const { pathname } = useLocation();
+
   const currentUser = useContext(UserContext);
 
   useEffect(() => {
     if (!currentUser) {
-      navigate("/auth");
+      navigate("/auth", { state: { prevPath: pathname } });
     }
-  }, [currentUser, navigate]);
+  }, [currentUser, pathname, navigate]);
 
   const products = useContext(ProductsContext);
 
