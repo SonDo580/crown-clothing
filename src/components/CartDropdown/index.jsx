@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 import { CartContext } from "../../contexts/CartContext";
 
@@ -9,6 +10,13 @@ import CartItem from "../CartItem";
 export default function CartDropdown() {
   const { cartItems } = useContext(CartContext);
 
+  const gotoCheckout = () => {
+    if (!cartItems.length) {
+      toast.warn("You haven't selected any product");
+      return;
+    }
+  };
+
   return (
     <div className="cart-dropdown-container">
       <div className="cart-items">
@@ -16,7 +24,7 @@ export default function CartDropdown() {
           <CartItem key={item.id} cartItem={item} />
         ))}
       </div>
-      <Button>Go to Checkout</Button>
+      <Button onClick={gotoCheckout}>Go to Checkout</Button>
     </div>
   );
 }
