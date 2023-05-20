@@ -7,6 +7,12 @@
   font-size: 20px;
   align-items: center;
 
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
   .image-container {
     width: 23%;
     padding-right: 15px;
@@ -27,6 +33,7 @@
 
     .arrow {
       cursor: pointer;
+      font-size: large;
     }
 
     .value {
@@ -35,9 +42,6 @@
   }
 
   .remove-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
     font-size: x-large;
   }
 }

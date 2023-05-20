@@ -27,9 +27,15 @@ export default function CheckOutItem({ item }) {
       <div className="name">{name}</div>
 
       <div className="quantity">
-        <button onClick={decrementQuantity}>-</button>
+        <button className="arrow" onClick={decrementQuantity}>
+          &#10094;
+        </button>
+
         <span className="value">{quantity}</span>
-        <button onClick={incrementQuantity}>+</button>
+
+        <button className="arrow" onClick={incrementQuantity}>
+          &#10095;
+        </button>
       </div>
 
       <div className="price">${price}</div>
