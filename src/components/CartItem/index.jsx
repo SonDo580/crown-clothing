@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./cartItem.scss";
 
 export default function CartItem({ cartItem }) {
-  const { name, quantity, imageUrl, price } = cartItem;
+  const { name, imageUrl, price } = cartItem;
 
   return (
     <div className="cart-item-container">
@@ -10,9 +10,7 @@ export default function CartItem({ cartItem }) {
 
       <div className="item-details">
         <h2 className="name">{name}</h2>
-        <span>
-          {quantity} x ${price}
-        </span>
+        <span>${price}</span>
       </div>
     </div>
   );
