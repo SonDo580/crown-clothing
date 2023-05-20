@@ -6,14 +6,14 @@ import { CartContext } from "../../contexts/CartContext";
 export default function Checkout() {
   const navigate = useNavigate();
 
+  const { cartItems, incrementItemQuantity, decrementItemQuantity } =
+    useContext(CartContext);
+
   useEffect(() => {
     if (cartItems.length === 0) {
       navigate("/shop");
     }
   }, [cartItems, navigate]);
-
-  const { cartItems, incrementItemQuantity, decrementItemQuantity } =
-    useContext(CartContext);
 
   return (
     <div>
