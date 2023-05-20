@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "../../contexts/CartContext";
 
+import "./checkout.scss";
+import CheckOutItem from "../../components/CheckoutItem";
+
 export default function Checkout() {
   const navigate = useNavigate();
 
-  const { cartItems, incrementItemQuantity, decrementItemQuantity } =
-    useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   useEffect(() => {
     if (cartItems.length === 0) {
@@ -16,18 +18,22 @@ export default function Checkout() {
   }, [cartItems, navigate]);
 
   return (
-    <div>
-      <h1>Checkout Page</h1>
-      <div>
-        {cartItems.map(({ name, id, quantity }) => (
-          <div key={id}>
-            <h2>{name}</h2>
-            <button onClick={() => decrementItemQuantity(id)}>-</button>
-            <span>{quantity}</span>
-            <button onClick={() => incrementItemQuantity(id)}>+</button>
-          </div>
-        ))}
+    <div className="checkout-container">
+      <div className="checkout-header">
+        <div className="header-block">Product</div>
+        <div className="header-block">Description</div>
+        <div className="header-block">Quantity</div>
+        <div className="header-block">Price</div>
+        <div className="header-block">Remove</div>
       </div>
+
+      <>
+        {cartItems.map((item) => (
+          <CheckOutItem key={item.id} item={item} />
+        ))}
+      </>
+
+      <span className="total">Total: placeholder</span>
     </div>
   );
 }
