@@ -11,11 +11,13 @@ export default function App() {
     <>
       <NavBar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/auth" element={<Authentication />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/auth" element={<Authentication />} />
+        </Routes>
+      </main>
 
       <ToastContainer />
     </>
