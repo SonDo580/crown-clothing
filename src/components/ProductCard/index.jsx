@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
       </div>
 
       {isInCart ? (
-        <Button buttonType="inverted" onClick={removeFromCart}>
+        <Button buttonType="danger" onClick={removeFromCart}>
           Remove from Cart
         </Button>
       ) : (
