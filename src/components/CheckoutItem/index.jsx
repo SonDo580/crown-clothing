@@ -7,11 +7,16 @@ import "./checkoutItem.scss";
 export default function CheckOutItem({ item }) {
   const { id, name, price, quantity, imageUrl } = item;
 
-  const { incrementItemQuantity, decrementItemQuantity } =
-    useContext(CartContext);
+  const {
+    incrementItemQuantity,
+    decrementItemQuantity,
+    removeProductFromCart,
+  } = useContext(CartContext);
 
   const incrementQuantity = () => incrementItemQuantity(id);
   const decrementQuantity = () => decrementItemQuantity(id);
+
+  const removeFromCart = () => removeProductFromCart(id);
 
   return (
     <div className="checkout-item-container">
@@ -29,7 +34,9 @@ export default function CheckOutItem({ item }) {
 
       <div className="price">${price}</div>
 
-      <button className="remove-button">X</button>
+      <button className="remove-button" onClick={removeFromCart}>
+        X
+      </button>
     </div>
   );
 }
