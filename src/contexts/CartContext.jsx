@@ -32,10 +32,10 @@ export const CartProvider = ({ children }) => {
       )
     );
 
-  // const setItemQuantity = ({ id, quantity }) =>
-  //   setCartItems((items) =>
-  //     items.map((item) => (item.id === id ? { ...item, quantity } : item))
-  //   );
+  const setItemQuantity = ({ id, quantity }) =>
+    setCartItems((items) =>
+      items.map((item) => (item.id === id ? { ...item, quantity } : item))
+    );
 
   const contextValue = {
     cartVisible,
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
     removeProductFromCart,
     incrementItemQuantity,
     decrementItemQuantity,
-    // setItemQuantity,
+    setItemQuantity,
   };
 
   return (
