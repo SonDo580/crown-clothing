@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
   const removeFromCart = () => removeProductFromCart(id);
 
   return (
-    <div className="product-card-container">
+    <div className={`product-card-container ${isInCart ? "in-cart" : ""}`}>
       <img src={imageUrl} alt={name} />
 
       <div className="footer">
