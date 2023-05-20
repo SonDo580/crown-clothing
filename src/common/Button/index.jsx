@@ -4,6 +4,7 @@ import "./button.scss";
 const buttonTypeClasses = {
   google: "google-sign-in",
   inverted: "inverted",
+  danger: "danger",
 };
 
 export default function Button({ children, buttonType, ...otherProps }) {

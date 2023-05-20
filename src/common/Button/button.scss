@@ -42,4 +42,16 @@
       border: none;
     }
   }
+
+  &.danger {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+
+    &:hover {
+      background-color: red;
+      color: white;
+      border: none;
+    }
+  }
 }
