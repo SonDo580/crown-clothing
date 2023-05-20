@@ -13,8 +13,29 @@ export const CartProvider = ({ children }) => {
   const addProductToCart = (product) =>
     setCartItems((items) => [...items, { ...product, quantity: 1 }]);
 
-  const removeProductFromCart = (productId) =>
-    setCartItems((items) => items.filter((item) => item.id !== productId));
+  const removeProductFromCart = (id) =>
+    setCartItems((items) => items.filter((item) => item.id !== id));
+
+  const incrementItemQuantity = (id) =>
+    setCartItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+
+  const decrementItemQuantity = (id) =>
+    setCartItems((items) =>
+      items.map((item) => {
+        item.id !== id || item.quantity === 1
+          ? item
+          : { ...item, quantity: item.quantity - 1 };
+      })
+    );
+
+  // const setItemQuantity = ({ id, quantity }) =>
+  //   setCartItems((items) =>
+  //     items.map((item) => (item.id === id ? { ...item, quantity } : item))
+  //   );
 
   const contextValue = {
     cartVisible,
@@ -22,6 +43,9 @@ export const CartProvider = ({ children }) => {
     cartItems,
     addProductToCart,
     removeProductFromCart,
+    incrementItemQuantity,
+    decrementItemQuantity,
+    // setItemQuantity,
   };
 
   return (
