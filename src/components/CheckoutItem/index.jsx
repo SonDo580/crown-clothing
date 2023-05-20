@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { CartContext } from "../../contexts/CartContext";
 import "./checkoutItem.scss";
 
+const MIN_QUANTITY = 1;
+const regexQuantity = /^[1-9]\d*$/;
+
 export default function CheckOutItem({ item }) {
   const { id, name, price, quantity, imageUrl } = item;
 
@@ -11,12 +14,29 @@ export default function CheckOutItem({ item }) {
     incrementItemQuantity,
     decrementItemQuantity,
     removeProductFromCart,
+    setItemQuantity,
   } = useContext(CartContext);
 
   const incrementQuantity = () => incrementItemQuantity(id);
   const decrementQuantity = () => decrementItemQuantity(id);
 
   const removeFromCart = () => removeProductFromCart(id);
+
+  const onChangeQuantityInput = (event) => {
+    const input = event.target.value;
+
+    if (input === "" || regexQuantity.test(input)) {
+      setItemQuantity({ id, quantity: input });
+    }
+  };
+
+  const onBlurQuantityInput = (event) => {
+    const input = event.target.value;
+
+    if (input === "") {
+      setItemQuantity({ id, quantity: MIN_QUANTITY });
+    }
+  };
 
   return (
     <div className="checkout-item-container">
@@ -31,7 +51,12 @@ export default function CheckOutItem({ item }) {
           &#10094;
         </button>
 
-        <input className="value" value={quantity} />
+        <input
+          className="value"
+          value={quantity}
+          onChange={onChangeQuantityInput}
+          onBlur={onBlurQuantityInput}
+        />
 
         <button className="arrow" onClick={incrementQuantity}>
           &#10095;
