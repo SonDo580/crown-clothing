@@ -17,6 +17,11 @@ export default function Checkout() {
     }
   }, [cartItems, navigate]);
 
+  const totalCost = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className="checkout-container">
       <div className="checkout-header">
@@ -33,7 +38,7 @@ export default function Checkout() {
         ))}
       </>
 
-      <span className="total">Total: placeholder</span>
+      <span className="total">Total: ${totalCost}</span>
     </div>
   );
 }
