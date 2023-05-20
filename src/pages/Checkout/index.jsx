@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "../../contexts/CartContext";
 
 export default function Checkout() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate("/shop");
+    }
+  }, [cartItems, navigate]);
+
   const { cartItems, incrementItemQuantity, decrementItemQuantity } =
     useContext(CartContext);
-
-  // TODO: navigate to shop if cart has no items
 
   return (
     <div>
