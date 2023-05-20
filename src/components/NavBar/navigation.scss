@@ -1,12 +1,21 @@
 .navigation {
   height: 70px;
   width: 100%;
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 25px;
+  padding: 0 40px;
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background-color: white;
+  box-shadow: 0 0 5px 0 gray;
 
   .logo-container {
-    height: 100%;
     width: 70px;
     padding: 25px;
   }
