@@ -25,11 +25,11 @@ export const CartProvider = ({ children }) => {
 
   const decrementItemQuantity = (id) =>
     setCartItems((items) =>
-      items.map((item) => {
+      items.map((item) =>
         item.id !== id || item.quantity === 1
           ? item
-          : { ...item, quantity: item.quantity - 1 };
-      })
+          : { ...item, quantity: item.quantity - 1 }
+      )
     );
 
   // const setItemQuantity = ({ id, quantity }) =>
