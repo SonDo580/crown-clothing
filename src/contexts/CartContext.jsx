@@ -10,7 +10,19 @@ export const CartProvider = ({ children }) => {
 
   const [cartItems, setCartItems] = useState([]);
 
-  const contextValue = { cartVisible, toggleCartVisible, cartItems };
+  const addProductToCart = (product) =>
+    setCartItems((items) => [...items, { ...product, quantity: 1 }]);
+
+  const removeProductFromCart = (productId) =>
+    setCartItems((items) => items.filter((item) => item.id !== productId));
+
+  const contextValue = {
+    cartVisible,
+    toggleCartVisible,
+    cartItems,
+    addProductToCart,
+    removeProductFromCart,
+  };
 
   return (
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
