@@ -31,7 +31,7 @@ export default function CheckOutItem({ item }) {
           &#10094;
         </button>
 
-        <span className="value">{quantity}</span>
+        <input className="value" value={quantity} />
 
         <button className="arrow" onClick={incrementQuantity}>
           &#10095;
