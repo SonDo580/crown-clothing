@@ -29,7 +29,7 @@ export default function CheckOutItem({ item }) {
 
       <div className="price">${price}</div>
 
-      <div className="remove-button">X</div>
+      <button className="remove-button">X</button>
     </div>
   );
 }
