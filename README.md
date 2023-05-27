@@ -9,5 +9,5 @@
 - Add / Remove from Cart
 - Increase / Decrease cartItem quantity
 - Specify exact cartItem quantity + validate input
-- Navigate when user login status changes
+- Routing + Navigating
 - Styling added: danger button, chosen product, sticky header
