@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./main.scss";
 import App from "./App.jsx";
 import { UserProvider } from "./contexts/UserContext";
-import { CategoriesProvider } from "./contexts/CategoriesProvider";
+import { CategoriesProvider } from "./contexts/CategoriesContext";
 import { CartProvider } from "./contexts/CartContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
