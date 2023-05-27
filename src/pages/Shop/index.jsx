@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../contexts/UserContext";
-import { ProductsContext } from "../../contexts/ProductsContext";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import "./shop.scss";
 import ProductCard from "../../components/ProductCard";
@@ -20,13 +20,13 @@ export default function Shop() {
     }
   }, [currentUser, pathname, navigate]);
 
-  const products = useContext(ProductsContext);
+  const categoryMap = useContext(CategoriesContext);
 
   return (
     <div className="products-container">
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <ProductCard key={product.id} product={product} />
-      ))}
+      ))} */}
     </div>
   );
 }
