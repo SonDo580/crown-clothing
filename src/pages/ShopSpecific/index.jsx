@@ -14,10 +14,14 @@ export default function ShopSpecific() {
   const products = categoryMap[category] || [];
 
   return (
-    <div className="products-container">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="category-specific-container">
+      <h2 className="title">{category}</h2>
+
+      <div className="products-container">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }
