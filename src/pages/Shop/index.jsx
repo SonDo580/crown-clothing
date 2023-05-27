@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import "./shop.scss";
-import ProductCard from "../../components/ProductCard";
+import CategoryPreview from "../../components/CategoryPreview";
 
 export default function Shop() {
   const navigate = useNavigate();
@@ -23,10 +23,14 @@ export default function Shop() {
   const categoryMap = useContext(CategoriesContext);
 
   return (
-    <div className="products-container">
-      {/* {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))} */}
-    </div>
+    <>
+      {Object.keys(categoryMap).map((title) => (
+        <CategoryPreview
+          key={title}
+          title={title}
+          products={categoryMap[title]}
+        />
+      ))}
+    </>
   );
 }
