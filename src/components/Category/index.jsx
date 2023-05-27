@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import "./category.scss";
+import { Link } from "react-router-dom";
 
 export default function Category({ category }) {
   const { imageUrl, title } = category;
@@ -13,8 +14,10 @@ export default function Category({ category }) {
         }}
       />
       <div className="category-body-container">
-        <h2>{title}</h2>
-        <p>Shop Now</p>
+        <Link to={`/shop/${title}`}>
+          <h2>{title}</h2>
+          <p>Shop Now</p>
+        </Link>
       </div>
     </div>
   );
