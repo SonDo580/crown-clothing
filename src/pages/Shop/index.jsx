@@ -1,24 +1,9 @@
-import { useContext, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
-import { UserContext } from "../../contexts/UserContext";
 import { CategoriesContext } from "../../contexts/CategoriesContext";
-
 import CategoryPreview from "../../components/CategoryPreview";
 
 export default function Shop() {
-  const navigate = useNavigate();
-
-  const { pathname } = useLocation();
-
-  const currentUser = useContext(UserContext);
-
-  useEffect(() => {
-    if (!currentUser) {
-      navigate("/auth", { state: { prevPath: pathname } });
-    }
-  }, [currentUser, pathname, navigate]);
-
   const categoryMap = useContext(CategoriesContext);
 
   return (
