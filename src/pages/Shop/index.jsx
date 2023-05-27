@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { CategoriesContext } from "../../contexts/CategoriesContext";
 
-import "./shop.scss";
 import CategoryPreview from "../../components/CategoryPreview";
 
 export default function Shop() {
