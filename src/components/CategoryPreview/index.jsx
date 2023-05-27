@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 import "./categoryPreview.scss";
 import ProductCard from "../ProductCard";
+import { Link } from "react-router-dom";
 
 const NUM_PRODUCTS_PREVIEW = 4;
 
@@ -9,7 +10,9 @@ export default function CategoryPreview({ title, products }) {
   return (
     <div className="category-preview-container">
       <h2>
-        <span className="title">{title.toUpperCase()}</span>
+        <Link to={title} className="title">
+          {title.toUpperCase()}
+        </Link>
       </h2>
 
       <div className="preview">
