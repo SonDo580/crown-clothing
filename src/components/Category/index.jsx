@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./category.scss";
-import { Link } from "react-router-dom";
 
 export default function Category({ category }) {
   const { imageUrl, title } = category;
