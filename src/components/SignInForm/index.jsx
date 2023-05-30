@@ -6,6 +6,7 @@ import {
   signInWithGoogle,
   signInWithEmailPassword,
 } from "../../utils/firebase.utils";
+import { BUTTON_TYPES } from "../../constants/button";
 
 import "./signinForm.scss";
 import FormInput from "../../common/FormInput";
@@ -76,7 +77,11 @@ export default function SignInForm() {
         <div className="buttons-container">
           <Button type="submit">Sign In</Button>
 
-          <Button type="button" buttonType="google" onClick={googleSignIn}>
+          <Button
+            type="button"
+            buttonType={BUTTON_TYPES.google}
+            onClick={googleSignIn}
+          >
             Google Sign In
           </Button>
         </div>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 
 import { CartContext } from "../../contexts/CartContext";
+import { BUTTON_TYPES } from "../../constants/button";
 
 import "./productCard.scss";
 import Button from "../../common/Button";
@@ -27,11 +28,11 @@ export default function ProductCard({ product }) {
       </div>
 
       {isInCart ? (
-        <Button buttonType="danger" onClick={removeFromCart}>
+        <Button buttonType={BUTTON_TYPES.danger} onClick={removeFromCart}>
           Remove from Cart
         </Button>
       ) : (
-        <Button buttonType="inverted" onClick={addToCart}>
+        <Button buttonType={BUTTON_TYPES.inverted} onClick={addToCart}>
           Add to Cart
         </Button>
       )}

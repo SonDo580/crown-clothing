@@ -6,12 +6,13 @@ import {
   GoogleSignInButton,
   InvertedButton,
 } from "./button.style.jsx";
+import { BUTTON_TYPES } from "../../constants/button.js";
 
 const BUTTON_MAP = {
-  default: DefaultButton,
-  google: GoogleSignInButton,
-  inverted: InvertedButton,
-  danger: DangerButton,
+  [BUTTON_TYPES.default]: DefaultButton,
+  [BUTTON_TYPES.google]: GoogleSignInButton,
+  [BUTTON_TYPES.inverted]: InvertedButton,
+  [BUTTON_TYPES.danger]: DangerButton,
 };
 
 const getButton = (buttonType = "default") => BUTTON_MAP[buttonType];
