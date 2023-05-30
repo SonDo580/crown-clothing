@@ -1,18 +1,20 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { signOutUser } from "../../utils/firebase.utils";
 import { UserContext } from "../../contexts/UserContext";
 import { CartContext } from "../../contexts/CartContext";
 
-import "./navigation.scss";
+import {
+  LogoContainer,
+  NavBarContainer,
+  NavLinksContainer,
+  StyledNavLink,
+} from "./navbar.style.jsx";
+
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import CartIcon from "../CartIcon";
 import CartDropdown from "../CartDropdown";
-
-const navlinkClassName = ({ isActive }) =>
-  isActive ? "nav-link active" : "nav-link";
 
 export default function NavBar() {
   const currentUser = useContext(UserContext);
@@ -28,30 +30,26 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="navigation">
-      <Link className="logo-container" to="/">
+    <NavBarContainer>
+      <LogoContainer to="/">
         <CrownLogo className="logo" />
-      </Link>
+      </LogoContainer>
 
-      <div className="nav-links-container">
-        <NavLink className={navlinkClassName} to="/shop">
-          SHOP
-        </NavLink>
+      <NavLinksContainer>
+        <StyledNavLink to="/shop">SHOP</StyledNavLink>
 
         {currentUser ? (
-          <span className="nav-link" onClick={handleSignOut}>
+          <StyledNavLink as="span" onClick={handleSignOut}>
             SIGN OUT
-          </span>
+          </StyledNavLink>
         ) : (
-          <NavLink className={navlinkClassName} to="/auth">
-            SIGN IN
-          </NavLink>
+          <StyledNavLink to="/auth">SIGN IN</StyledNavLink>
         )}
 
         <CartIcon />
-      </div>
+      </NavLinksContainer>
 
       {cartVisible && <CartDropdown />}
-    </nav>
+    </NavBarContainer>
   );
 }
