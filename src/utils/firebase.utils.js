@@ -104,7 +104,7 @@ export const getCategoryDocuments = async () => {
       const { title, items, imageUrl } = docSnapshot.data();
 
       categoryMap[title.toLowerCase()] = items;
-      categories.push({ title, imageUrl });
+      categories.push({ title: title.toLowerCase(), imageUrl });
       return accumulator;
     },
     { categoryMap: {}, categories: [] }
