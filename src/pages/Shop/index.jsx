@@ -4,7 +4,7 @@ import { CategoriesContext } from "../../contexts/CategoriesContext";
 import CategoryPreview from "../../components/CategoryPreview";
 
 export default function Shop() {
-  const categoryMap = useContext(CategoriesContext);
+  const { categoryMap } = useContext(CategoriesContext);
 
   return (
     <>

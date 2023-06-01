@@ -9,7 +9,7 @@ import { ProductContainer, Title } from "./shopSpecific.style.jsx";
 export default function ShopSpecific() {
   const { category } = useParams();
 
-  const categoryMap = useContext(CategoriesContext);
+  const { categoryMap } = useContext(CategoriesContext);
 
   const products = categoryMap[category] || [];
 

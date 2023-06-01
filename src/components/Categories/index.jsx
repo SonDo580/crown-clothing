@@ -1,9 +1,13 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import { CategoriesContainer } from "./categories.style";
 import Category from "../Category";
 
-export default function Categories({ categories }) {
+export default function Categories() {
+  const { categories } = useContext(CategoriesContext);
+
   return (
     <CategoriesContainer>
       {categories.map((category) => (
@@ -12,7 +16,3 @@ export default function Categories({ categories }) {
     </CategoriesContainer>
   );
 }
-
-Categories.propTypes = {
-  categories: PropTypes.array.isRequired,
-};
