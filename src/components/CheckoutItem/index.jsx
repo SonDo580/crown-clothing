@@ -2,7 +2,14 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 
 import { CartContext } from "../../contexts/CartContext";
-import "./checkoutItem.scss";
+
+import {
+  Cell,
+  CheckoutItemContainer,
+  ImageContainer,
+  Input,
+  Button,
+} from "./checkoutItem.style.jsx";
 
 const MIN_QUANTITY = 1;
 const regexQuantity = /^[1-9]\d*$/;
@@ -39,36 +46,35 @@ export default function CheckOutItem({ item }) {
   };
 
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt={name} />
-      </div>
+      </ImageContainer>
 
-      <div className="name">{name}</div>
+      <Cell>{name}</Cell>
 
-      <div className="quantity">
-        <button className="arrow" onClick={decrementQuantity}>
+      <Cell columnTitle="quantity">
+        <Button type="arrow" onClick={decrementQuantity}>
           &#10094;
-        </button>
+        </Button>
 
-        <input
-          className="value"
+        <Input
           value={quantity}
           onChange={onChangeQuantityInput}
           onBlur={onBlurQuantityInput}
         />
 
-        <button className="arrow" onClick={incrementQuantity}>
+        <Button type="arrow" onClick={incrementQuantity}>
           &#10095;
-        </button>
-      </div>
+        </Button>
+      </Cell>
 
-      <div className="price">${price}</div>
+      <Cell>${price}</Cell>
 
-      <button className="remove-button" onClick={removeFromCart}>
+      <Button type="remove" onClick={removeFromCart}>
         X
-      </button>
-    </div>
+      </Button>
+    </CheckoutItemContainer>
   );
 }
 

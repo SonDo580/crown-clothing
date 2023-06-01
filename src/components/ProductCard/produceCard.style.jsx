@@ -1,4 +1,10 @@
-.product-card-container {
+import styled, { css } from "styled-components";
+
+const selectedProductStyle = css`
+  box-shadow: 0 0 5px 0 blue;
+`;
+
+export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -6,9 +12,7 @@
   align-items: center;
   position: relative;
 
-  &.in-cart {
-    box-shadow: 0 0 5px 0 blue;
-  }
+  ${({ isInCart }) => isInCart && selectedProductStyle}
 
   img {
     width: 100%;
@@ -35,22 +39,13 @@
       display: flex;
     }
   }
+`;
 
-  .footer {
-    width: 100%;
-    height: 5%;
-    padding: 0 10px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-
-    .name {
-      width: 90%;
-      margin-bottom: 15px;
-    }
-
-    .price {
-      width: 10%;
-    }
-  }
-}
+export const Footer = styled.div`
+  width: 100%;
+  height: 5%;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+`;

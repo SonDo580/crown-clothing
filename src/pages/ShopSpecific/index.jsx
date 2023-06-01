@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 import { CategoriesContext } from "../../contexts/CategoriesContext";
 
-import "./shopSpecific.scss";
 import ProductCard from "../../components/ProductCard";
+import { ProductContainer, Title } from "./shopSpecific.style.jsx";
 
 export default function ShopSpecific() {
   const { category } = useParams();
@@ -14,14 +14,14 @@ export default function ShopSpecific() {
   const products = categoryMap[category] || [];
 
   return (
-    <div className="category-specific-container">
-      <h2 className="title">{category}</h2>
+    <>
+      <Title>{category}</Title>
 
-      <div className="products-container">
+      <ProductContainer>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div>
-    </div>
+      </ProductContainer>
+    </>
   );
 }

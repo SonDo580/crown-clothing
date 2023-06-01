@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
-import "./categories.scss";
+
+import { CategoriesContainer } from "./categories.style";
 import Category from "../Category";
 
 export default function Categories({ categories }) {
   return (
-    <div className="categories-container">
+    <CategoriesContainer>
       {categories.map((category) => (
         <Category key={category.id} category={category} />
       ))}
-    </div>
+    </CategoriesContainer>
   );
 }
 

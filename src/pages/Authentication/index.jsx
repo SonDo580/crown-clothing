@@ -3,9 +3,9 @@ import { useContext, useEffect } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
-import "./authentication.scss";
 import SignInForm from "../../components/SignInForm";
 import SignUpForm from "../../components/SignUpForm";
+import { AuthenticationContainer } from "./authentication.style.jsx";
 
 export default function Authentication() {
   const navigate = useNavigate();
@@ -22,9 +22,9 @@ export default function Authentication() {
   }, [currentUser, prevPath, navigate]);
 
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationContainer>
   );
 }

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { CartContext } from "../../contexts/CartContext";
 import { BUTTON_TYPES } from "../../constants/button";
 
-import "./productCard.scss";
 import Button from "../../common/Button";
+import { Footer, ProductCardContainer } from "./produceCard.style";
 
 export default function ProductCard({ product }) {
   const { id, name, imageUrl, price } = product;
@@ -19,13 +19,13 @@ export default function ProductCard({ product }) {
   const removeFromCart = () => removeProductFromCart(id);
 
   return (
-    <div className={`product-card-container ${isInCart ? "in-cart" : ""}`}>
+    <ProductCardContainer isInCart={isInCart}>
       <img src={imageUrl} alt={name} />
 
-      <div className="footer">
-        <span className="name">{name}</span>
-        <span className="price">${price}</span>
-      </div>
+      <Footer>
+        <span>{name}</span>
+        <span>${price}</span>
+      </Footer>
 
       {isInCart ? (
         <Button buttonType={BUTTON_TYPES.danger} onClick={removeFromCart}>
@@ -36,7 +36,7 @@ export default function ProductCard({ product }) {
           Add to Cart
         </Button>
       )}
-    </div>
+    </ProductCardContainer>
   );
 }
 

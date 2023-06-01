@@ -3,8 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "../../contexts/CartContext";
 
-import "./checkout.scss";
 import CheckOutItem from "../../components/CheckoutItem";
+import {
+  CheckoutContainer,
+  CheckoutHeader,
+  HeaderBlock,
+  TotalDisplay,
+} from "./checkout.style.jsx";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -23,14 +28,14 @@ export default function Checkout() {
   );
 
   return (
-    <div className="checkout-container">
-      <div className="checkout-header">
-        <div className="header-block">Product</div>
-        <div className="header-block">Description</div>
-        <div className="header-block">Quantity</div>
-        <div className="header-block">Price</div>
-        <div className="header-block">Remove</div>
-      </div>
+    <CheckoutContainer>
+      <CheckoutHeader>
+        <HeaderBlock>Product</HeaderBlock>
+        <HeaderBlock>Description</HeaderBlock>
+        <HeaderBlock>Quantity</HeaderBlock>
+        <HeaderBlock>Price</HeaderBlock>
+        <HeaderBlock>Remove</HeaderBlock>
+      </CheckoutHeader>
 
       <>
         {cartItems.map((item) => (
@@ -38,7 +43,7 @@ export default function Checkout() {
         ))}
       </>
 
-      <span className="total">Total: ${totalCost}</span>
-    </div>
+      <TotalDisplay>Total: ${totalCost}</TotalDisplay>
+    </CheckoutContainer>
   );
 }
