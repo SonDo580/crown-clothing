@@ -1,22 +1,26 @@
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { CartContext } from "../../contexts/CartContext";
 import { BUTTON_TYPES } from "../../constants/button";
+import { cartItemsSelector } from "../../redux/cart/cartSelectors";
+import {
+  addProductToCart,
+  removeProductFromCart,
+} from "../../redux/cart/cartActions";
 
 import Button from "../../common/Button";
 import { Footer, ProductCardContainer } from "./produceCard.style";
 
 export default function ProductCard({ product }) {
-  const { id, name, imageUrl, price } = product;
+  const dispatch = useDispatch();
 
-  const { cartItems, addProductToCart, removeProductFromCart } =
-    useContext(CartContext);
+  const { id, name, imageUrl, price } = product;
+  const cartItems = useSelector(cartItemsSelector);
 
   const isInCart = cartItems.findIndex((item) => item.id === id) !== -1;
 
-  const addToCart = () => addProductToCart(product);
-  const removeFromCart = () => removeProductFromCart(id);
+  const addToCart = () => dispatch(addProductToCart(product));
+  const removeFromCart = () => dispatch(removeProductFromCart(id));
 
   return (
     <ProductCardContainer isInCart={isInCart}>

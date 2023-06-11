@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { CartContext } from "../../contexts/CartContext";
+import { cartItemsSelector } from "../../redux/cart/cartSelectors";
+import { toggleCartVisible } from "../../redux/cart/cartActions";
 
 import {
   CartDropdownContainer,
@@ -14,8 +15,9 @@ import CartItem from "../CartItem";
 
 export default function CartDropdown() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { cartItems, toggleCartVisible } = useContext(CartContext);
+  const cartItems = useSelector(cartItemsSelector);
 
   const gotoCheckout = () => {
     if (!cartItems.length) {
@@ -24,7 +26,7 @@ export default function CartDropdown() {
     }
 
     navigate("/checkout");
-    toggleCartVisible();
+    dispatch(toggleCartVisible());
   };
 
   return (

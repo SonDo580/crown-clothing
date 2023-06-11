@@ -1,7 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { CartContext } from "../../contexts/CartContext";
+import {
+  cartItemsSelector,
+  totalCostSelector,
+} from "../../redux/cart/cartSelectors";
 
 import CheckOutItem from "../../components/CheckoutItem";
 import {
@@ -14,18 +18,14 @@ import {
 export default function Checkout() {
   const navigate = useNavigate();
 
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector(cartItemsSelector);
+  const totalCost = useSelector(totalCostSelector);
 
   useEffect(() => {
     if (cartItems.length === 0) {
       navigate("/shop");
     }
   }, [cartItems, navigate]);
-
-  const totalCost = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
 
   return (
     <CheckoutContainer>

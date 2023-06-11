@@ -1,16 +1,13 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { CategoriesContext } from "../../contexts/CategoriesContext";
-
+import { categoryMapSelector } from "../../redux/category/categorySelectors";
 import ProductCard from "../../components/ProductCard";
 import { ProductContainer, Title } from "./shopSpecific.style.jsx";
 
 export default function ShopSpecific() {
   const { category } = useParams();
-
-  const { categoryMap } = useContext(CategoriesContext);
-
+  const categoryMap = useSelector(categoryMapSelector);
   const products = categoryMap[category] || [];
 
   return (

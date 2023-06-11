@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 import { signOutUser } from "../../utils/firebase.utils";
 import { currentUserSelector } from "../../redux/user/userSelectors";
-import { CartContext } from "../../contexts/CartContext";
+import { cartVisibleSelector } from "../../redux/cart/cartSelectors";
 
 import {
   LogoContainer,
@@ -18,7 +17,7 @@ import CartDropdown from "../CartDropdown";
 
 export default function NavBar() {
   const currentUser = useSelector(currentUserSelector);
-  const { cartVisible } = useContext(CartContext);
+  const cartVisible = useSelector(cartVisibleSelector);
 
   const handleSignOut = async () => {
     try {

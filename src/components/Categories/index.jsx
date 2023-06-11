@@ -1,12 +1,11 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
-import { CategoriesContext } from "../../contexts/CategoriesContext";
-
+import { categoryListSelector } from "../../redux/category/categorySelectors";
 import { CategoriesContainer } from "./categories.style";
 import Category from "../Category";
 
 export default function Categories() {
-  const { categories } = useContext(CategoriesContext);
+  const categories = useSelector(categoryListSelector);
 
   return (
     <CategoriesContainer>

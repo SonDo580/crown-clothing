@@ -3,8 +3,15 @@ import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import {
+  getCategoryDocuments,
+  onAuthStateChangedListener,
+} from "./utils/firebase.utils";
 import { setCurrentUser } from "./redux/user/userActions";
-import { onAuthStateChangedListener } from "./utils/firebase.utils";
+import {
+  setCategoryList,
+  setCategoryMap,
+} from "./redux/category/categoryActions";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -22,6 +29,16 @@ export default function App() {
     );
 
     return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const getCategoryMap = async () => {
+      const { categoryMap, categories } = await getCategoryDocuments();
+      dispatch(setCategoryMap(categoryMap));
+      dispatch(setCategoryList(categories));
+    };
+
+    getCategoryMap();
   }, []);
 
   return (

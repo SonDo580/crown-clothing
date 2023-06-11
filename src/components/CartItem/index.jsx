@@ -1,8 +1,7 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import { CartContext } from "../../contexts/CartContext";
-
+import { removeProductFromCart } from "../../redux/cart/cartActions";
 import {
   CartItemContainer,
   ItemDetails,
@@ -10,11 +9,10 @@ import {
 } from "./cartItem.style.jsx";
 
 export default function CartItem({ cartItem }) {
+  const dispatch = useDispatch();
   const { id, name, imageUrl, price } = cartItem;
 
-  const { removeProductFromCart } = useContext(CartContext);
-
-  const removeFromCart = () => removeProductFromCart(id);
+  const removeFromCart = () => dispatch(removeProductFromCart(id));
 
   return (
     <CartItemContainer>

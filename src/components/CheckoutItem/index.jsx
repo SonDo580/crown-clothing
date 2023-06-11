@@ -1,7 +1,12 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import { CartContext } from "../../contexts/CartContext";
+import {
+  decrementItemQuantity,
+  incrementItemQuantity,
+  removeProductFromCart,
+  setItemQuantity,
+} from "../../redux/cart/cartActions";
 
 import {
   Cell,
@@ -12,28 +17,21 @@ import {
 } from "./checkoutItem.style.jsx";
 
 const MIN_QUANTITY = 1;
-const regexQuantity = /^[1-9]\d*$/;
+const QUANTITY_REGEX = /^[1-9]\d*$/;
 
 export default function CheckOutItem({ item }) {
+  const dispatch = useDispatch();
   const { id, name, price, quantity, imageUrl } = item;
 
-  const {
-    incrementItemQuantity,
-    decrementItemQuantity,
-    removeProductFromCart,
-    setItemQuantity,
-  } = useContext(CartContext);
-
-  const incrementQuantity = () => incrementItemQuantity(id);
-  const decrementQuantity = () => decrementItemQuantity(id);
-
-  const removeFromCart = () => removeProductFromCart(id);
+  const incrementQuantity = () => dispatch(incrementItemQuantity(id));
+  const decrementQuantity = () => dispatch(decrementItemQuantity(id));
+  const removeFromCart = () => dispatch(removeProductFromCart(id));
 
   const onChangeQuantityInput = (event) => {
     const input = event.target.value;
 
-    if (input === "" || regexQuantity.test(input)) {
-      setItemQuantity({ id, quantity: input });
+    if (input === "" || QUANTITY_REGEX.test(input)) {
+      dispatch(setItemQuantity({ id, quantity: input }));
     }
   };
 
@@ -41,7 +39,7 @@ export default function CheckOutItem({ item }) {
     const input = event.target.value;
 
     if (input === "") {
-      setItemQuantity({ id, quantity: MIN_QUANTITY });
+      dispatch(setItemQuantity({ id, quantity: MIN_QUANTITY }));
     }
   };
 

@@ -11,3 +11,4 @@
 - Specify exact cartItem quantity + validate input
 - Routing + Navigating
 - Styling added: danger button, chosen product, sticky header
+- Adding Redux
