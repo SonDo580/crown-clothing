@@ -1,8 +1,9 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 import { signOutUser } from "../../utils/firebase.utils";
-import { UserContext } from "../../contexts/UserContext";
+import { currentUserSelector } from "../../redux/user/userSelectors";
 import { CartContext } from "../../contexts/CartContext";
 
 import {
@@ -11,14 +12,12 @@ import {
   NavLinksContainer,
   StyledNavLink,
 } from "./navbar.style.jsx";
-
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import CartIcon from "../CartIcon";
 import CartDropdown from "../CartDropdown";
 
 export default function NavBar() {
-  const currentUser = useContext(UserContext);
-
+  const currentUser = useSelector(currentUserSelector);
   const { cartVisible } = useContext(CartContext);
 
   const handleSignOut = async () => {

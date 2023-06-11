@@ -1,11 +1,12 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
 
-import { UserContext } from "../../contexts/UserContext";
+import { currentUserSelector } from "../../redux/user/userSelectors";
 
+import { AuthenticationContainer } from "./authentication.style.jsx";
 import SignInForm from "../../components/SignInForm";
 import SignUpForm from "../../components/SignUpForm";
-import { AuthenticationContainer } from "./authentication.style.jsx";
 
 export default function Authentication() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function Authentication() {
   const { state: locationState } = useLocation();
   const prevPath = (locationState && locationState.prevPath) || "/";
 
-  const currentUser = useContext(UserContext);
+  const currentUser = useSelector(currentUserSelector);
 
   useEffect(() => {
     if (currentUser) {
