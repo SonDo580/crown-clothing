@@ -8,10 +8,7 @@ import {
   onAuthStateChangedListener,
 } from "./utils/firebase.utils";
 import { setCurrentUser } from "./redux/user/userActions";
-import {
-  setCategoryList,
-  setCategoryMap,
-} from "./redux/category/categoryActions";
+import { setCategoryList } from "./redux/category/categoryActions";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -33,8 +30,7 @@ export default function App() {
 
   useEffect(() => {
     const getCategoryMap = async () => {
-      const { categoryMap, categories } = await getCategoryDocuments();
-      dispatch(setCategoryMap(categoryMap));
+      const categories = await getCategoryDocuments();
       dispatch(setCategoryList(categories));
     };
 

@@ -8,6 +8,10 @@ export const categoryListSelector = createSelector(
 );
 
 export const categoryMapSelector = createSelector(
-  categorySliceSelector,
-  (state) => state.categoryMap
+  categoryListSelector,
+  (categories) =>
+    categories.reduce(
+      (accumulator, { title, items }) => ({ ...accumulator, [title]: items }),
+      {}
+    )
 );
