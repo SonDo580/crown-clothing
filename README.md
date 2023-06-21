@@ -12,3 +12,4 @@
 - Routing + Navigating
 - Styling added: danger button, chosen product, sticky header
 - Adding Redux
+- Handling errors
