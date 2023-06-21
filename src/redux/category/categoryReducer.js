@@ -1,13 +1,30 @@
-import { SET_CATEGORY_LIST } from "./categoryConstants";
+import {
+  FETCH_CATEGORY_LIST_FAILED,
+  FETCH_CATEGORY_LIST_INIT,
+  FETCH_CATEGORY_LIST_SUCCESS,
+} from "./categoryConstants";
 
 const initialState = {
   categories: [],
+  loading: false,
+  error: null,
 };
 
 export const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CATEGORY_LIST:
-      return { ...state, categories: action.categories };
+    case FETCH_CATEGORY_LIST_INIT:
+      return { ...state, loading: true };
+
+    case FETCH_CATEGORY_LIST_FAILED:
+      return { ...state, error: action.error, loading: false };
+
+    case FETCH_CATEGORY_LIST_SUCCESS:
+      return {
+        ...state,
+        categories: action.categories,
+        loading: false,
+        error: null,
+      };
 
     default:
       return state;

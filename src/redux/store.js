@@ -1,11 +1,15 @@
 import { applyMiddleware, compose, createStore } from "redux";
+import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { rootReducer } from "./rootReducer";
 
-const middlewares = process.env.NODE_ENV !== "production" ? [logger] : [];
+const middlewares = [
+  process.env.NODE_ENV !== "production" && logger,
+  thunk,
+].filter(Boolean);
 
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
