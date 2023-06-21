@@ -1,14 +1,32 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { categoryMapSelector } from "../../redux/category/categorySelectors";
+import {
+  categoryErrorSelector,
+  categoryLoadingSelector,
+  categoryMapSelector,
+} from "../../redux/category/categorySelectors";
+
 import ProductCard from "../../components/ProductCard";
 import { ProductContainer, Title } from "./shopSpecific.style.jsx";
+import Spinner from "../../common/Spinner";
+import ErrorDisplay from "../../common/ErrorDisplay";
 
 export default function ShopSpecific() {
   const { category } = useParams();
   const categoryMap = useSelector(categoryMapSelector);
   const products = categoryMap[category] || [];
+
+  const loading = useSelector(categoryLoadingSelector);
+  const error = useSelector(categoryErrorSelector);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <ErrorDisplay error={error} />;
+  }
 
   return (
     <>

@@ -15,3 +15,13 @@ export const categoryMapSelector = createSelector(
       {}
     )
 );
+
+export const categoryLoadingSelector = createSelector(
+  categorySliceSelector,
+  (state) => state.loading
+);
+
+export const categoryErrorSelector = createSelector(
+  categorySliceSelector,
+  (state) => state.error
+);
