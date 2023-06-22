@@ -1,6 +1,6 @@
 import {
   FETCH_CATEGORY_LIST_FAILED,
-  FETCH_CATEGORY_LIST_INIT,
+  FETCH_CATEGORY_LIST_PENDING,
   FETCH_CATEGORY_LIST_SUCCESS,
 } from "./categoryConstants";
 
@@ -12,7 +12,7 @@ const initialState = {
 
 export const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CATEGORY_LIST_INIT:
+    case FETCH_CATEGORY_LIST_PENDING:
       return { ...state, loading: true };
 
     case FETCH_CATEGORY_LIST_FAILED:

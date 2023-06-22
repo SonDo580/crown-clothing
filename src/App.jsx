@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 import { onAuthStateChangedListener } from "./utils/firebase.utils";
 import { setCurrentUser } from "./redux/user/userActions";
-import { fetchCategoryListThunk } from "./redux/category/categoryActions";
+import { fetchCategoryListInit } from "./redux/category/categoryActions";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -26,7 +26,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCategoryListThunk());
+    dispatch(fetchCategoryListInit());
   }, []);
 
   return (
