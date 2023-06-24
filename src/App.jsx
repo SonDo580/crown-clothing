@@ -5,8 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { fetchCategoryListInit } from "./redux/category/categoryActions";
 import { checkUserSession } from "./redux/user/userActions";
-import { authenticationErrorSelector } from "./redux/user/userSelectors";
+import {
+  authenticationErrorSelector,
+  initialCheckingSelector,
+  authenticatingSelector,
+} from "./redux/user/userSelectors";
 
+import Spinner from "./common/Spinner";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
@@ -17,6 +22,8 @@ import Checkout from "./pages/Checkout";
 export default function App() {
   const dispatch = useDispatch();
   const authenticationError = useSelector(authenticationErrorSelector);
+  const initialChecking = useSelector(initialCheckingSelector);
+  const authenticating = useSelector(authenticatingSelector);
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -29,10 +36,13 @@ export default function App() {
     }
   }, [authenticationError]);
 
+  if (initialChecking) {
+    return null;
+  }
+
   return (
     <>
       <NavBar />
-
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,6 +56,7 @@ export default function App() {
       </main>
 
       <ToastContainer />
+      {authenticating && <Spinner fullScreen={true} />}
     </>
   );
 }

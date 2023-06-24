@@ -11,10 +11,20 @@ import {
   SIGN_UP_INIT,
   SIGN_UP_RESET,
   SIGN_UP_SUCCESS,
+  START_AUTHENTICATION,
+  STOP_INITIAL_CHECK,
 } from "./userConstants";
 
 export const checkUserSession = () => ({
   type: CHECK_USER_SESSION,
+});
+
+export const stopInitialCheck = () => ({
+  type: STOP_INITIAL_CHECK,
+});
+
+export const startAuthentication = () => ({
+  type: START_AUTHENTICATION,
 });
 
 export const googleSignInInit = () => ({

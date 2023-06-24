@@ -1,4 +1,5 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { toast } from "react-toastify";
 
 import {
   createEmailPasswordUser,
@@ -22,21 +23,26 @@ import {
   signOutSuccess,
   signUpFailed,
   signUpSuccess,
+  stopInitialCheck,
+  startAuthentication,
 } from "./userActions";
-import { toast } from "react-toastify";
 
 function* getAuthenticatedUser() {
+  yield put(startAuthentication());
+
   try {
     const user = yield call(getCurrentUser);
-    if (user) {
-      yield put(signInSuccess(user));
-    }
+    yield put(signInSuccess(user));
   } catch (error) {
     yield put(signInFailed(error));
   }
+
+  yield put(stopInitialCheck());
 }
 
 function* googleSignIn() {
+  yield put(startAuthentication());
+
   try {
     const { user } = yield call(signInWithGoogle);
     yield call(createUserDocument, user);
@@ -47,6 +53,8 @@ function* googleSignIn() {
 }
 
 function* emailSignIn({ email, password }) {
+  yield put(startAuthentication());
+
   try {
     const { user } = yield call(signInWithEmailPassword, email, password);
     yield put(signInSuccess(user));
@@ -56,6 +64,8 @@ function* emailSignIn({ email, password }) {
 }
 
 function* signUp({ email, password, displayName }) {
+  yield put(startAuthentication());
+
   try {
     const { user } = yield call(createEmailPasswordUser, email, password);
     yield call(createUserDocument, user, { displayName });
@@ -67,6 +77,8 @@ function* signUp({ email, password, displayName }) {
 }
 
 function* signOut() {
+  yield put(startAuthentication());
+
   try {
     yield call(signOutUser);
     yield put(signOutSuccess());
