@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 
-import { signOutUser } from "../../utils/firebase.utils";
 import { currentUserSelector } from "../../redux/user/userSelectors";
 import { cartVisibleSelector } from "../../redux/cart/cartSelectors";
+import { signOutInit } from "../../redux/user/userActions";
 
 import {
   LogoContainer,
@@ -16,16 +15,11 @@ import CartIcon from "../CartIcon";
 import CartDropdown from "../CartDropdown";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
   const currentUser = useSelector(currentUserSelector);
   const cartVisible = useSelector(cartVisibleSelector);
 
-  const handleSignOut = async () => {
-    try {
-      await signOutUser();
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+  const handleSignOut = () => dispatch(signOutInit());
 
   return (
     <NavBarContainer>

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
-import { onAuthStateChangedListener } from "./utils/firebase.utils";
-import { setCurrentUser } from "./redux/user/userActions";
 import { fetchCategoryListInit } from "./redux/category/categoryActions";
+import { checkUserSession } from "./redux/user/userActions";
+import { authenticationErrorSelector } from "./redux/user/userSelectors";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -16,18 +16,18 @@ import Checkout from "./pages/Checkout";
 
 export default function App() {
   const dispatch = useDispatch();
+  const authenticationError = useSelector(authenticationErrorSelector);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) =>
-      dispatch(setCurrentUser(user))
-    );
-
-    return unsubscribe;
-  }, []);
-
-  useEffect(() => {
+    dispatch(checkUserSession());
     dispatch(fetchCategoryListInit());
   }, []);
+
+  useEffect(() => {
+    if (authenticationError) {
+      toast.error(authenticationError.message);
+    }
+  }, [authenticationError]);
 
   return (
     <>

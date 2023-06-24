@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-import {
-  createEmailPasswordUser,
-  createUserDocument,
-} from "../../utils/firebase.utils";
+import { signUpInit, signUpReset } from "../../redux/user/userActions";
+import { shouldResetFormSelector } from "../../redux/user/userSelectors";
 
 import FormInput from "../../common/FormInput";
 import Button from "../../common/Button";
@@ -18,8 +17,10 @@ const defaultFormFields = {
 };
 
 export default function SignUpForm() {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const dispatch = useDispatch();
+  const shouldResetForm = useSelector(shouldResetFormSelector);
 
+  const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
   const handleChange = (event) => {
@@ -33,34 +34,31 @@ export default function SignUpForm() {
 
   const resetForm = () => setFormFields(defaultFormFields);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (shouldResetForm) {
+      resetForm();
+      dispatch(signUpReset());
+    }
+  }, [shouldResetForm]);
 
-    let invalid = false;
-
+  const isValidForm = () => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!");
-      invalid = true;
+      return false;
     }
 
     if (displayName.trim() === "") {
       toast.error("Display Name contains all whitespaces!");
-      invalid = true;
+      return false;
     }
 
-    if (invalid) {
-      return;
-    }
+    return true;
+  };
 
-    try {
-      const { user } = await createEmailPasswordUser(email, password);
-      await createUserDocument(user, { displayName });
-      toast.success("Sign up successful");
-
-      resetForm();
-    } catch (err) {
-      toast.error(err.message);
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!isValidForm()) return;
+    dispatch(signUpInit(email, password, displayName));
   };
 
   return (

@@ -55,16 +55,25 @@ export const signOutUser = () => signOut(auth);
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
 
+export const getCurrentUser = () =>
+  new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        unsubscribe();
+        resolve(user);
+      },
+      reject
+    );
+  });
+
 export const createUserDocument = async (userAuth, additionalInfo = {}) => {
   const userDocRef = doc(db, "users", userAuth.uid);
-
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
-
     const createdAt = new Date();
-
     await setDoc(userDocRef, {
       displayName,
       email,
@@ -73,7 +82,7 @@ export const createUserDocument = async (userAuth, additionalInfo = {}) => {
     });
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
 export const addCollectionDocuments = async (

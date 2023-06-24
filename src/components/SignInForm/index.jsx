@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 import {
-  createUserDocument,
-  signInWithGoogle,
-  signInWithEmailPassword,
-} from "../../utils/firebase.utils";
+  emailSignInInit,
+  googleSignInInit,
+} from "../../redux/user/userActions";
 import { BUTTON_TYPES } from "../../constants/button";
 
+import { ButtonsContainer, SignUpContainer } from "./signinForm.style.jsx";
 import FormInput from "../../common/FormInput";
 import Button from "../../common/Button";
-import { ButtonsContainer, SignUpContainer } from "./signinForm.style.jsx";
 
 const defaultFormFields = {
   email: "",
@@ -18,8 +17,8 @@ const defaultFormFields = {
 };
 
 export default function SignInForm() {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
-
   const { email, password } = formFields;
 
   const handleChange = (event) => {
@@ -31,30 +30,14 @@ export default function SignInForm() {
     }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      await signInWithEmailPassword(email, password);
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
-
-  const googleSignIn = async () => {
-    try {
-      const { user } = await signInWithGoogle();
-      await createUserDocument(user);
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+  const emailSignIn = () => dispatch(emailSignInInit(email, password));
+  const googleSignIn = () => dispatch(googleSignInInit());
 
   return (
     <SignUpContainer>
       <h2>{"Already an account?"}</h2>
       <span>Sign in with your email and password</span>
-      <form onSubmit={handleSubmit}>
+      <form>
         <FormInput
           label="Email"
           type="email"
@@ -75,7 +58,9 @@ export default function SignInForm() {
         />
 
         <ButtonsContainer>
-          <Button type="submit">Sign In</Button>
+          <Button type="button" onClick={emailSignIn}>
+            Sign In
+          </Button>
 
           <Button
             type="button"
