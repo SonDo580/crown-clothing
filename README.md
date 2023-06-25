@@ -1,6 +1,6 @@
 # Crown Clothing
 
-- A typical E-Commerce site
+- An online clothing store
 - Guided project from ZTM
 
 # Self-implement
@@ -11,5 +11,5 @@
 - Specify exact cartItem quantity + validate input
 - Routing + Navigating
 - Styling added: danger button, chosen product, sticky header
-- Adding Redux
+- Adding Redux, migrate to Redux-toolkit
 - Handling errors
