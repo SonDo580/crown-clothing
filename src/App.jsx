@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-import { fetchCategoryListInit } from "./redux/category/categoryActions";
+import { fetchCategoryListInit } from "./redux/category/categorySlice";
 import { checkUserSession } from "./redux/user/userActions";
 import {
   authenticationErrorSelector,

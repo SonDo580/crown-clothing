@@ -1,12 +1,12 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
 
 import { getCategoryDocuments } from "../../utils/firebase.utils";
-import { FETCH_CATEGORY_LIST_INIT } from "./categoryConstants";
 import {
+  fetchCategoryListInit,
   fetchCategoryListFailed,
   fetchCategoryListPending,
   fetchCategoryListSuccess,
-} from "./categoryActions";
+} from "./categorySlice";
 
 function* fetchCategoryList() {
   yield put(fetchCategoryListPending());
@@ -20,7 +20,7 @@ function* fetchCategoryList() {
 }
 
 function* onFetchCategoryList() {
-  yield takeLatest(FETCH_CATEGORY_LIST_INIT, fetchCategoryList);
+  yield takeLatest(fetchCategoryListInit.type, fetchCategoryList);
 }
 
 export function* categorySaga() {
