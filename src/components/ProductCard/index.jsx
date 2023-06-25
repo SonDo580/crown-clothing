@@ -6,7 +6,7 @@ import { cartItemsSelector } from "../../redux/cart/cartSelectors";
 import {
   addProductToCart,
   removeProductFromCart,
-} from "../../redux/cart/cartActions";
+} from "../../redux/cart/cartSlice";
 
 import Button from "../../common/Button";
 import { Footer, ProductCardContainer } from "./produceCard.style";

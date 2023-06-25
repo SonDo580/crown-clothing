@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { cartItemsSelector } from "../../redux/cart/cartSelectors";
-import { toggleCartVisible } from "../../redux/cart/cartActions";
+import { toggleCartVisible } from "../../redux/cart/cartSlice";
 
 import {
   CartIconContainer,

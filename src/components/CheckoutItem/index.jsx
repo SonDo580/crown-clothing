@@ -6,7 +6,7 @@ import {
   incrementItemQuantity,
   removeProductFromCart,
   setItemQuantity,
-} from "../../redux/cart/cartActions";
+} from "../../redux/cart/cartSlice.js";
 
 import {
   Cell,
