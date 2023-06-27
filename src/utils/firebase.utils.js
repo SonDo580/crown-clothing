@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-
 import {
   getAuth,
   signInWithPopup,
@@ -9,7 +8,6 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-
 import {
   getFirestore,
   doc,
@@ -31,31 +29,28 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-
 const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
-
 googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-const db = getFirestore(firebaseApp);
+const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
 
-export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
-
-export const createEmailPasswordUser = (email, password) =>
+const createEmailPasswordUser = (email, password) =>
   createUserWithEmailAndPassword(auth, email, password);
 
-export const signInWithEmailPassword = (email, password) =>
+const signInWithEmailPassword = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
 
-export const signOutUser = () => signOut(auth);
+const signOutUser = () => signOut(auth);
 
-export const onAuthStateChangedListener = (callback) =>
+const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
 
-export const getCurrentUser = () =>
+const getCurrentUser = () =>
   new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
@@ -67,13 +62,14 @@ export const getCurrentUser = () =>
     );
   });
 
-export const createUserDocument = async (userAuth, additionalInfo = {}) => {
+const createUserDocument = async (userAuth, additionalInfo = {}) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
+
     await setDoc(userDocRef, {
       displayName,
       email,
@@ -101,7 +97,7 @@ export const addCollectionDocuments = async (
   await batch.commit();
 };
 
-export const getCategoryDocuments = async () => {
+const getCategoryDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
@@ -112,4 +108,15 @@ export const getCategoryDocuments = async () => {
   });
 
   return categories;
+};
+
+export {
+  signInWithGoogle,
+  createEmailPasswordUser,
+  signInWithEmailPassword,
+  signOutUser,
+  onAuthStateChangedListener,
+  getCurrentUser,
+  createUserDocument,
+  getCategoryDocuments,
 };
