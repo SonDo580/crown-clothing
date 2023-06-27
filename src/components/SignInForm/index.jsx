@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  emailSignInInit,
-  googleSignInInit,
-} from "../../redux/user/userActions";
+import { emailSignInInit, googleSignInInit } from "../../redux/user/userSlice";
 import { BUTTON_TYPES } from "../../constants/button";
 
 import { ButtonsContainer, SignUpContainer } from "./signinForm.style.jsx";

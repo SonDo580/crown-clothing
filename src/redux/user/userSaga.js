@@ -10,13 +10,11 @@ import {
   signOutUser,
 } from "../../utils/firebase.utils";
 import {
-  CHECK_USER_SESSION,
-  EMAIL_SIGN_IN_INIT,
-  GOOGLE_SIGN_IN_INIT,
-  SIGN_OUT_INIT,
-  SIGN_UP_INIT,
-} from "./userConstants";
-import {
+  checkUserSession,
+  googleSignInInit,
+  emailSignInInit,
+  signUpInit,
+  signOutInit,
   signInSuccess,
   signInFailed,
   signOutFailed,
@@ -25,7 +23,7 @@ import {
   signUpSuccess,
   stopInitialCheck,
   startAuthentication,
-} from "./userActions";
+} from "./userSlice";
 
 function* getAuthenticatedUser() {
   yield put(startAuthentication());
@@ -88,19 +86,19 @@ function* signOut() {
 }
 
 function* onCheckUserSession() {
-  yield takeLatest(CHECK_USER_SESSION, getAuthenticatedUser);
+  yield takeLatest(checkUserSession.type, getAuthenticatedUser);
 }
 function* onGoogleSignIn() {
-  yield takeLatest(GOOGLE_SIGN_IN_INIT, googleSignIn);
+  yield takeLatest(googleSignInInit.type, googleSignIn);
 }
 function* onEmailSignIn() {
-  yield takeLatest(EMAIL_SIGN_IN_INIT, emailSignIn);
+  yield takeLatest(emailSignInInit.type, emailSignIn);
 }
 function* onSignUp() {
-  yield takeLatest(SIGN_UP_INIT, signUp);
+  yield takeLatest(signUpInit.type, signUp);
 }
 function* onSignOut() {
-  yield takeLatest(SIGN_OUT_INIT, signOut);
+  yield takeLatest(signOutInit.type, signOut);
 }
 
 export function* userSaga() {

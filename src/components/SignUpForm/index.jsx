@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-import { signUpInit, signUpReset } from "../../redux/user/userActions";
+import { signUpInit, signUpReset } from "../../redux/user/userSlice";
 import { shouldResetFormSelector } from "../../redux/user/userSelectors";
 
 import FormInput from "../../common/FormInput";
