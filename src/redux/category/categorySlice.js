@@ -25,12 +25,14 @@ const categorySlice = createSlice({
   },
 });
 
-export const categoryReducer = categorySlice.reducer;
-export const fetchCategoryListInit = createAction(
-  "category/fetchCategoryListInit"
-);
+export default categorySlice.reducer;
+
 export const {
   fetchCategoryListPending,
   fetchCategoryListSuccess,
   fetchCategoryListFailed,
 } = categorySlice.actions;
+
+export const fetchCategoryListInit = createAction(
+  "category/fetchCategoryListInit"
+);

@@ -49,12 +49,13 @@ const userSlice = createSlice({
     },
     signOutFailed(state, action) {
       state.authenticating = false;
-      state.error = action.payload;
+      state.error = action.payloady;
     },
   },
 });
 
-export const userReducer = userSlice.reducer;
+export default userSlice.reducer;
+
 export const {
   stopInitialCheck,
   startAuthentication,
@@ -76,6 +77,7 @@ const sagaInitActionTypes = [
 ];
 
 const sagaInitActions = createActions(sliceName, sagaInitActionTypes);
+
 export const {
   checkUserSession,
   googleSignInInit,
