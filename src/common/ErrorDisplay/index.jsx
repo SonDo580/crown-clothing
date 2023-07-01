@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { ErrorStackContainer } from "./error.style";
 
 export default function ErrorDisplay({ error }) {
-  if (process.env.NODE_ENV === "production") {
+  if (import.meta.env.PROD) {
     return <h1>Something went wrong!</h1>;
   }
 

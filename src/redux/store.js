@@ -20,7 +20,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
   middleware: middlewares,
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: import.meta.env.DEV,
 });
 
 const persistor = persistStore(store);
