@@ -4,7 +4,7 @@ import { DefaultButton } from "../../common/Button/button.style";
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 340px;
-  height: 440px;
+  max-height: 440px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -25,7 +25,7 @@ export const EmptyMessage = styled.span`
 `;
 
 export const CartItemsContainer = styled.div`
-  height: 340px;
+  height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   overflow: scroll;
