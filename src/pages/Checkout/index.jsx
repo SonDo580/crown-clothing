@@ -8,6 +8,7 @@ import {
 } from "../../redux/cart/cartSelectors";
 
 import CheckOutItem from "../../components/CheckoutItem";
+import PaymentForm from "../../components/PaymentForm";
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -37,13 +38,12 @@ export default function Checkout() {
         <HeaderBlock>Remove</HeaderBlock>
       </CheckoutHeader>
 
-      <>
-        {cartItems.map((item) => (
-          <CheckOutItem key={item.id} item={item} />
-        ))}
-      </>
+      {cartItems.map((item) => (
+        <CheckOutItem key={item.id} item={item} />
+      ))}
 
       <TotalDisplay>Total: ${totalCost}</TotalDisplay>
+      <PaymentForm />
     </CheckoutContainer>
   );
 }
