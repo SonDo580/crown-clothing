@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 import {
+  ButtonSpinner,
   DangerButton,
   DefaultButton,
   GoogleSignInButton,
@@ -15,15 +16,25 @@ const BUTTON_MAP = {
   [BUTTON_TYPES.danger]: DangerButton,
 };
 
-const getButton = (buttonType = "default") => BUTTON_MAP[buttonType];
+const getButton = (buttonType) => BUTTON_MAP[buttonType];
 
-export default function Button({ children, buttonType, ...otherProps }) {
+export default function Button({
+  children,
+  buttonType = "default",
+  isLoading = false,
+  ...otherProps
+}) {
   const CustomButton = getButton(buttonType);
 
-  return <CustomButton {...otherProps}>{children}</CustomButton>;
+  return (
+    <CustomButton disabled={isLoading} {...otherProps}>
+      {isLoading && <ButtonSpinner />} {children}
+    </CustomButton>
+  );
 }
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   buttonType: PropTypes.string,
+  isLoading: PropTypes.bool,
 };

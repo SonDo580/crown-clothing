@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SpinnerContainer } from "../Spinner/spinner.style";
 
 export const DefaultButton = styled.button`
   min-width: 165px;
@@ -16,6 +17,8 @@ export const DefaultButton = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
 
   &:hover {
     background-color: white;
@@ -56,4 +59,9 @@ export const DangerButton = styled(DefaultButton)`
     color: white;
     border: none;
   }
+`;
+
+export const ButtonSpinner = styled(SpinnerContainer)`
+  width: 30px;
+  height: 30px;
 `;

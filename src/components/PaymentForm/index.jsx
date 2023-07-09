@@ -66,7 +66,7 @@ export default function PaymentForm() {
       <h2>Credit Card Payment</h2>
       <FormContainer onSubmit={paymentHandler}>
         <CardElement />
-        <Button disabled={isProcessingPayment}>Pay now</Button>
+        <Button isLoading={isProcessingPayment}>Pay now</Button>
       </FormContainer>
     </PaymentFormContainer>
   );
