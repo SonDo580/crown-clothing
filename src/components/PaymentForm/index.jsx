@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+
+import { currentUserSelector } from "../../redux/user/userSelectors";
+import { totalCostSelector } from "../../redux/cart/cartSelectors";
 
 import Button from "../../common/Button";
 import { FormContainer, PaymentFormContainer } from "./paymentForm.style";
@@ -6,6 +10,8 @@ import { FormContainer, PaymentFormContainer } from "./paymentForm.style";
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const currentUser = useSelector(currentUserSelector);
+  const totalCost = useSelector(totalCostSelector);
 
   const paymentHandler = async (event) => {
     event.preventDefault();
@@ -19,7 +25,7 @@ export default function PaymentForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: 10000 }),
+      body: JSON.stringify({ amount: totalCost * 100 }),
     }).then((res) => res.json());
 
     const {
@@ -30,7 +36,7 @@ export default function PaymentForm() {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: "Son Do",
+          name: currentUser ? currentUser.displayName : "Guest",
         },
       },
     });
