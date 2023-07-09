@@ -25,39 +25,42 @@ export default function PaymentForm() {
 
     setIsProcessingPayment(true);
 
-    const response = await fetch("/.netlify/functions/createPaymentIntent", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ amount: totalCost * 100 }),
-    }).then((res) => res.json());
-
-    const {
-      paymentIntent: { client_secret },
-    } = response;
-
-    const { error, paymentIntent } = await stripe.confirmCardPayment(
-      `${client_secret}`,
-      {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: currentUser ? currentUser.displayName : "Guest",
-          },
+    try {
+      const response = await fetch("/.netlify/functions/createPaymentIntent", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({ amount: totalCost * 100 }),
+      }).then((res) => res.json());
+
+      const {
+        paymentIntent: { client_secret },
+      } = response;
+
+      const { error, paymentIntent } = await stripe.confirmCardPayment(
+        `${client_secret}`,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement),
+            billing_details: {
+              name: currentUser ? currentUser.displayName : "Guest",
+            },
+          },
+        }
+      );
+
+      setIsProcessingPayment(false);
+
+      if (error) {
+        throw new Error(error);
       }
-    );
 
-    setIsProcessingPayment(false);
-
-    if (error) {
-      toast.error(error);
-      return;
-    }
-
-    if (paymentIntent && paymentIntent.status === "succeeded") {
-      toast.success("Payment successful!");
+      if (paymentIntent && paymentIntent.status === "succeeded") {
+        toast.success("Payment successful!");
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
