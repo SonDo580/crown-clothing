@@ -23,7 +23,6 @@ export default function PaymentForm() {
 
   const paymentHandler = async (event) => {
     event.preventDefault();
-
     if (!stripe || !elements) {
       return;
     }
@@ -55,8 +54,6 @@ export default function PaymentForm() {
         }
       );
 
-      setIsProcessingPayment(false);
-
       if (error) {
         throw new Error(error);
       }
@@ -66,8 +63,9 @@ export default function PaymentForm() {
       }
     } catch (error) {
       toast.error(error.message);
-      setIsProcessingPayment(false);
     }
+
+    setIsProcessingPayment(false);
   };
 
   return (
