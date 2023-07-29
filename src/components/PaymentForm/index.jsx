@@ -7,6 +7,7 @@ import { currentUserSelector } from "../../redux/user/userSelectors";
 import { totalCostSelector } from "../../redux/cart/cartSelectors";
 
 import Button from "../../common/Button";
+import { CARD_ELEMENT_OPTIONS } from "./cardElementOptions";
 import {
   ButtonContainer,
   FormContainer,
@@ -73,7 +74,7 @@ export default function PaymentForm() {
     <PaymentFormContainer>
       <h2>Credit Card Payment</h2>
       <FormContainer onSubmit={paymentHandler}>
-        <CardElement />
+        <CardElement options={CARD_ELEMENT_OPTIONS} />
         <ButtonContainer>
           <Button isLoading={isProcessingPayment}>Pay now</Button>
         </ButtonContainer>
