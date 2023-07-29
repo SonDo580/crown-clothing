@@ -7,7 +7,11 @@ import { currentUserSelector } from "../../redux/user/userSelectors";
 import { totalCostSelector } from "../../redux/cart/cartSelectors";
 
 import Button from "../../common/Button";
-import { FormContainer, PaymentFormContainer } from "./paymentForm.style";
+import {
+  ButtonContainer,
+  FormContainer,
+  PaymentFormContainer,
+} from "./paymentForm.style";
 
 export default function PaymentForm() {
   const stripe = useStripe();
@@ -61,6 +65,7 @@ export default function PaymentForm() {
       }
     } catch (error) {
       toast.error(error.message);
+      setIsProcessingPayment(false);
     }
   };
 
@@ -69,7 +74,9 @@ export default function PaymentForm() {
       <h2>Credit Card Payment</h2>
       <FormContainer onSubmit={paymentHandler}>
         <CardElement />
-        <Button isLoading={isProcessingPayment}>Pay now</Button>
+        <ButtonContainer>
+          <Button isLoading={isProcessingPayment}>Pay now</Button>
+        </ButtonContainer>
       </FormContainer>
     </PaymentFormContainer>
   );

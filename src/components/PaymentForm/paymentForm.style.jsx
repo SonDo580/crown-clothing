@@ -12,3 +12,10 @@ export const FormContainer = styled.form`
   height: 100px;
   min-width: 500px;
 `;
+
+export const ButtonContainer = styled.div`
+  width: "100%";
+  display: "flex";
+  justify-content: "center";
+  margin-top: "10px";
+`;
