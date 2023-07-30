@@ -14,8 +14,7 @@ export const FormContainer = styled.form`
 `;
 
 export const ButtonContainer = styled.div`
-  width: "100%";
-  display: "flex";
-  justify-content: "center";
-  margin-top: "10px";
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 `;
