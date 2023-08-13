@@ -13,3 +13,4 @@
 - Styling added: danger button, chosen product, sticky header
 - Adding Redux, migrate to Redux-toolkit
 - Handling errors
+- Folder structure, absolute import

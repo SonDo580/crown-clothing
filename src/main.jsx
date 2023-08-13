@@ -6,8 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { Elements } from "@stripe/react-stripe-js";
 
-import { persistor, store } from "./redux/store";
-import { stripePromise } from "./utils/stripe.utils";
+import { persistor, store } from "@/redux/store";
+import { stripePromise } from "@/utils/stripe.utils";
 
 import "./main.scss";
 import App from "./App.jsx";

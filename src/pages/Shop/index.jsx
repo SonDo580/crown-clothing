@@ -4,10 +4,10 @@ import {
   categoryErrorSelector,
   categoryLoadingSelector,
   categoryMapSelector,
-} from "../../redux/category/categorySelectors";
+} from "@/redux/category/categorySelectors";
 
-import Spinner from "../../common/Spinner";
-import ErrorDisplay from "../../common/ErrorDisplay";
+import Spinner from "@/common/Spinner";
+import ErrorDisplay from "@/common/ErrorDisplay";
 import CategoryPreview from "../../components/CategoryPreview";
 
 export default function Shop() {

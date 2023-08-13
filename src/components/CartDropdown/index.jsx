@@ -2,15 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { cartItemsSelector } from "../../redux/cart/cartSelectors";
-import { toggleCartVisible } from "../../redux/cart/cartSlice";
+import { cartItemsSelector } from "@/redux/cart/cartSelectors";
+import { toggleCartVisible } from "@/redux/cart/cartSlice";
 
+import Button from "@/common/Button";
 import {
   CartDropdownContainer,
   CartItemsContainer,
   EmptyMessage,
 } from "./cartDropdown.style.jsx";
-import Button from "../../common/Button";
 import CartItem from "../CartItem";
 
 export default function CartDropdown() {

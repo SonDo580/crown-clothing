@@ -8,7 +8,7 @@ import {
   signInWithEmailPassword,
   signInWithGoogle,
   signOutUser,
-} from "../../utils/firebase.utils";
+} from "@/utils/firebase.utils";
 import {
   checkUserSession,
   googleSignInInit,

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createActions } from "../../utils/redux.utils";
+import { createActions } from "@/utils/redux.utils";
 
 const initialState = {
   currentUser: null,

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-import { signUpInit, signUpReset } from "../../redux/user/userSlice";
-import { shouldResetFormSelector } from "../../redux/user/userSelectors";
+import { signUpInit, signUpReset } from "@/redux/user/userSlice";
+import { shouldResetFormSelector } from "@/redux/user/userSelectors";
 
-import FormInput from "../../common/FormInput";
-import Button from "../../common/Button";
+import FormInput from "@/common/FormInput";
+import Button from "@/common/Button";
 import { SignUpContainer } from "./signupForm.style.jsx";
 
 const defaultFormFields = {

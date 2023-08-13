@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   cartItemsSelector,
   totalCostSelector,
-} from "../../redux/cart/cartSelectors";
+} from "@/redux/cart/cartSelectors";
 
 import CheckOutItem from "../../components/CheckoutItem";
 import PaymentForm from "../../components/PaymentForm";

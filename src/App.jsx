@@ -3,21 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-import { fetchCategoryListInit } from "./redux/category/categorySlice";
-import { checkUserSession } from "./redux/user/userSlice";
+import { fetchCategoryListInit } from "@/redux/category/categorySlice";
+import { checkUserSession } from "@/redux/user/userSlice";
 import {
   authenticationErrorSelector,
   initialCheckingSelector,
   authenticatingSelector,
-} from "./redux/user/userSelectors";
+} from "@/redux/user/userSelectors";
 
-import Spinner from "./common/Spinner";
-import NavBar from "./components/NavBar";
-import Home from "./pages/Home";
-import Shop from "./pages/Shop";
-import ShopSpecific from "./pages/ShopSpecific";
-import Authentication from "./pages/Authentication";
-import Checkout from "./pages/Checkout";
+import Spinner from "@/common/Spinner";
+import NavBar from "@/components/NavBar";
+import Home from "@/pages/Home";
+import Shop from "@/pages/Shop";
+import ShopSpecific from "@/pages/ShopSpecific";
+import Authentication from "@/pages/Authentication";
+import Checkout from "@/pages/Checkout";
 
 export default function App() {
   const dispatch = useDispatch();

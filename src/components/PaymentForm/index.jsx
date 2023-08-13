@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
 
-import { currentUserSelector } from "../../redux/user/userSelectors";
-import { totalCostSelector } from "../../redux/cart/cartSelectors";
+import { currentUserSelector } from "@/redux/user/userSelectors";
+import { totalCostSelector } from "@/redux/cart/cartSelectors";
 
-import Button from "../../common/Button";
+import Button from "@/common/Button";
 import { CARD_ELEMENT_OPTIONS } from "./cardElementOptions";
 import {
   ButtonContainer,

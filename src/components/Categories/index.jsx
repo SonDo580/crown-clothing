@@ -4,12 +4,12 @@ import {
   categoryErrorSelector,
   categoryListSelector,
   categoryLoadingSelector,
-} from "../../redux/category/categorySelectors";
+} from "@/redux/category/categorySelectors";
 
+import Spinner from "@/common/Spinner";
+import ErrorDisplay from "@/common/ErrorDisplay";
 import { CategoriesContainer } from "./categories.style";
-import Spinner from "../../common/Spinner";
 import Category from "../Category";
-import ErrorDisplay from "../../common/ErrorDisplay";
 
 export default function Categories() {
   const categories = useSelector(categoryListSelector);

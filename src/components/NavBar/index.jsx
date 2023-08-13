@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { currentUserSelector } from "../../redux/user/userSelectors";
-import { cartVisibleSelector } from "../../redux/cart/cartSelectors";
-import { signOutInit } from "../../redux/user/userSlice";
+import { currentUserSelector } from "@/redux/user/userSelectors";
+import { cartVisibleSelector } from "@/redux/cart/cartSelectors";
+import { signOutInit } from "@/redux/user/userSlice";
 
 import {
   LogoContainer,

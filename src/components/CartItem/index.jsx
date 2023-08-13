@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import { removeProductFromCart } from "../../redux/cart/cartSlice.js";
+import { removeProductFromCart } from "@/redux/cart/cartSlice.js";
 import {
   CartItemContainer,
   ItemDetails,

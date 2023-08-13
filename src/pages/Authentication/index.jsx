@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { currentUserSelector } from "../../redux/user/userSelectors";
+import { currentUserSelector } from "@/redux/user/userSelectors";
 
 import { AuthenticationContainer } from "./authentication.style.jsx";
 import SignInForm from "../../components/SignInForm";

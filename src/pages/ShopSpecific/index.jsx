@@ -5,12 +5,12 @@ import {
   categoryErrorSelector,
   categoryLoadingSelector,
   categoryMapSelector,
-} from "../../redux/category/categorySelectors";
+} from "@/redux/category/categorySelectors";
 
+import Spinner from "@/common/Spinner";
+import ErrorDisplay from "@/common/ErrorDisplay";
 import ProductCard from "../../components/ProductCard";
 import { ProductContainer, Title } from "./shopSpecific.style.jsx";
-import Spinner from "../../common/Spinner";
-import ErrorDisplay from "../../common/ErrorDisplay";
 
 export default function ShopSpecific() {
   const { category } = useParams();
