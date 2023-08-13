@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import ProductCard from "../ProductCard";
+import ProductCard from "@/components/ProductCard";
 import {
   CategoryPreviewContainer,
   Preview,

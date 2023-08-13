@@ -9,7 +9,7 @@ import {
 
 import Spinner from "@/common/Spinner";
 import ErrorDisplay from "@/common/ErrorDisplay";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "@/components/ProductCard";
 import { ProductContainer, Title } from "./shopSpecific.style.jsx";
 
 export default function ShopSpecific() {

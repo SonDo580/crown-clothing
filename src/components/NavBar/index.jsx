@@ -4,15 +4,15 @@ import { currentUserSelector } from "@/redux/user/userSelectors";
 import { cartVisibleSelector } from "@/redux/cart/cartSelectors";
 import { signOutInit } from "@/redux/user/userSlice";
 
+import { ReactComponent as CrownLogo } from "@/assets/crown.svg";
 import {
   LogoContainer,
   NavBarContainer,
   NavLinksContainer,
   StyledNavLink,
 } from "./navbar.style.jsx";
-import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
-import CartIcon from "../CartIcon";
-import CartDropdown from "../CartDropdown";
+import CartIcon from "./components/CartIcon";
+import CartDropdown from "./components/CartDropdown";
 
 export default function NavBar() {
   const dispatch = useDispatch();

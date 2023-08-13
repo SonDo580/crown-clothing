@@ -11,7 +11,7 @@ import {
   CartItemsContainer,
   EmptyMessage,
 } from "./cartDropdown.style.jsx";
-import CartItem from "../CartItem";
+import CartItem from "../CartItem/index.jsx";
 
 export default function CartDropdown() {
   const navigate = useNavigate();

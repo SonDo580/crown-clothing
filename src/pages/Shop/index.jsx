@@ -8,7 +8,7 @@ import {
 
 import Spinner from "@/common/Spinner";
 import ErrorDisplay from "@/common/ErrorDisplay";
-import CategoryPreview from "../../components/CategoryPreview";
+import CategoryPreview from "./components/CategoryPreview";
 
 export default function Shop() {
   const categoryMap = useSelector(categoryMapSelector);

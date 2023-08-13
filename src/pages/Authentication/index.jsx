@@ -5,8 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { currentUserSelector } from "@/redux/user/userSelectors";
 
 import { AuthenticationContainer } from "./authentication.style.jsx";
-import SignInForm from "../../components/SignInForm";
-import SignUpForm from "../../components/SignUpForm";
+import SignInForm from "./components/SignInForm";
+import SignUpForm from "./components/SignUpForm";
 
 export default function Authentication() {
   const navigate = useNavigate();

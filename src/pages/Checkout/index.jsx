@@ -7,8 +7,8 @@ import {
   totalCostSelector,
 } from "@/redux/cart/cartSelectors";
 
-import CheckOutItem from "../../components/CheckoutItem";
-import PaymentForm from "../../components/PaymentForm";
+import CheckOutItem from "./components/CheckoutItem";
+import PaymentForm from "./components/PaymentForm";
 import {
   CheckoutContainer,
   CheckoutHeader,
