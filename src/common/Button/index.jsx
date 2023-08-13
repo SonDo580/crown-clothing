@@ -7,7 +7,7 @@ import {
   GoogleSignInButton,
   InvertedButton,
 } from "./button.style.jsx";
-import { BUTTON_TYPES } from "../../constants/button.js";
+import { BUTTON_TYPES } from "./constants.js";
 
 const BUTTON_MAP = {
   [BUTTON_TYPES.default]: DefaultButton,

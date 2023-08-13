@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { BUTTON_TYPES } from "../../constants/button";
 import { cartItemsSelector } from "@/redux/cart/cartSelectors";
 import {
   addProductToCart,
@@ -9,6 +8,7 @@ import {
 } from "@/redux/cart/cartSlice";
 
 import Button from "@/common/Button";
+import { BUTTON_TYPES } from "@/common/Button/constants";
 import { Footer, ProductCardContainer } from "./produceCard.style";
 
 export default function ProductCard({ product }) {
