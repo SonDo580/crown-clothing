@@ -3,6 +3,10 @@
 - An online clothing store
 - Guided project from ZTM
 
+# Live Preview
+
+https://sondo-crown-clothing.netlify.app/
+
 # Self-implement
 
 - Use Vite instead of Create-React-App
