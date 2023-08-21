@@ -28,7 +28,7 @@ export default function App() {
   useEffect(() => {
     dispatch(checkUserSession());
     dispatch(fetchCategoryListInit());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (authenticationError) {

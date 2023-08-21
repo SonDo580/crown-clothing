@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
 
@@ -15,6 +16,8 @@ import {
 } from "./paymentForm.style";
 
 export default function PaymentForm() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const stripe = useStripe();
   const elements = useElements();
   const currentUser = useSelector(currentUserSelector);
@@ -23,6 +26,15 @@ export default function PaymentForm() {
 
   const paymentHandler = async (event) => {
     event.preventDefault();
+
+    if (!currentUser) {
+      return navigate("/auth", {
+        state: {
+          prevPath: location.pathname,
+        },
+      });
+    }
+
     if (!stripe || !elements) {
       return;
     }
@@ -48,7 +60,7 @@ export default function PaymentForm() {
           payment_method: {
             card: elements.getElement(CardElement),
             billing_details: {
-              name: currentUser ? currentUser.displayName : "Guest",
+              name: currentUser.displayName,
             },
           },
         }
