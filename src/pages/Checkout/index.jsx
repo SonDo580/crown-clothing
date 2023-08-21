@@ -26,7 +26,7 @@ export default function Checkout() {
     if (cartItems.length === 0) {
       navigate("/shop");
     }
-  }, [cartItems, navigate]);
+  }, [cartItems]);
 
   return (
     <CheckoutContainer>

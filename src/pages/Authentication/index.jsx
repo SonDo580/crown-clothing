@@ -20,7 +20,7 @@ export default function Authentication() {
     if (currentUser) {
       navigate(prevPath);
     }
-  }, [currentUser, prevPath, navigate]);
+  }, [currentUser, prevPath]);
 
   return (
     <AuthenticationContainer>
