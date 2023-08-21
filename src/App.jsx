@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,22 +8,21 @@ import { checkUserSession } from "@/redux/user/userSlice";
 import {
   authenticationErrorSelector,
   initialCheckingSelector,
-  authenticatingSelector,
 } from "@/redux/user/userSelectors";
 
 import Spinner from "@/common/Spinner";
 import NavBar from "@/components/NavBar";
-import Home from "@/pages/Home";
-import Shop from "@/pages/Shop";
-import ShopSpecific from "@/pages/ShopSpecific";
-import Authentication from "@/pages/Authentication";
-import Checkout from "@/pages/Checkout";
+
+const Home = lazy(() => import("@/pages/Home"));
+const Shop = lazy(() => import("@/pages/Shop"));
+const ShopSpecific = lazy(() => import("@/pages/ShopSpecific"));
+const Authentication = lazy(() => import("@/pages/Authentication"));
+const Checkout = lazy(() => import("@/pages/Checkout"));
 
 export default function App() {
   const dispatch = useDispatch();
   const authenticationError = useSelector(authenticationErrorSelector);
   const initialChecking = useSelector(initialCheckingSelector);
-  const authenticating = useSelector(authenticatingSelector);
 
   useEffect(() => {
     dispatch(checkUserSession());
@@ -43,20 +42,22 @@ export default function App() {
   return (
     <>
       <NavBar />
+
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop">
-            <Route index element={<Shop />} />
-            <Route path=":category" element={<ShopSpecific />} />
-          </Route>
-          <Route path="/auth" element={<Authentication />} />
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop">
+              <Route index element={<Shop />} />
+              <Route path=":category" element={<ShopSpecific />} />
+            </Route>
+            <Route path="/auth" element={<Authentication />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <ToastContainer />
-      {authenticating && <Spinner fullScreen={true} />}
     </>
   );
 }
